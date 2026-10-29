@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BG3 Honour Mode Cheat Sheet — The Bard's Field Manual</title>
+  <meta name="description" content="Baldur's Gate 3 Honour Mode cheat sheet: a Swords Bard / Paladin-led party, an area-by-area checklist from the Nautiloid to the Netherbrain, encounter cards and gear tables. Progress is saved in your browser.">
+  <meta property="og:title" content="BG3 Honour Mode Cheat Sheet — The Bard's Field Manual">
+  <meta property="og:description" content="Area-by-area Honour Mode checklist with builds, encounter cards and gear tables. Tracks your progress locally.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#2c1645">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232c1645'/%3E%3Cpath d='M32 10l5 15h15l-12 9 5 15-13-9-13 9 5-15-12-9h15z' fill='%23d4a537'/%3E%3C/svg%3E">
+  <script>
+    // Apply the saved colour theme before the page paints.
+    (function () {
+      var t = 'auto';
+      try { var s = JSON.parse(localStorage.getItem('bg3hm-bard-field-manual')); if (s && s.settings && s.settings.theme) t = s.settings.theme; } catch (e) {}
+      if (t === 'auto') t = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bs-theme', t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg sticky-top site-nav" data-bs-theme="dark" aria-label="Main">
+  <div class="container">
+    <a class="navbar-brand" href="#top"><span class="brand-mark" aria-hidden="true">&#10022;</span> Bard's Field Manual</a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="btn btn-sm btn-gold" type="button" id="resumeBtn" title="Jump to the first unticked playthrough step">Resume</button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    </div>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto" role="tablist" id="tabNav">
+          <li class="nav-item"><a class="nav-link active" href="#tabPlaythrough" data-bs-toggle="tab" role="tab" aria-controls="tabPlaythrough">Playthrough <span class="total" data-total="tabPlaythrough"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#tabParty" data-bs-toggle="tab" role="tab" aria-controls="tabParty">Party &amp; Builds</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tabGear" data-bs-toggle="tab" role="tab" aria-controls="tabGear">Gear</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tabTips" data-bs-toggle="tab" role="tab" aria-controls="tabTips">Tips</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tabHelp" data-bs-toggle="tab" role="tab" aria-controls="tabHelp">Help</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jump to</a>
+          <ul class="dropdown-menu jump-menu">
+            <li><h6 class="dropdown-header">Act I</h6></li><li><a class="dropdown-item" href="#a1-nautiloid">Prologue — Nautiloid</a></li><li><a class="dropdown-item" href="#a1-landing">Landing Zone</a></li><li><a class="dropdown-item" href="#a1-grove">Emerald Grove</a></li><li><a class="dropdown-item" href="#a1-crypt">Crypt &amp; Chapel Ruins</a></li><li><a class="dropdown-item" href="#a1-village">Blighted Village</a></li><li><a class="dropdown-item" href="#a1-risen">Risen Road</a></li><li><a class="dropdown-item" href="#a1-underdark">Underdark</a></li><li><a class="dropdown-item" href="#a1-goblin">Goblin Camp &amp; Shattered Sanctum</a></li><li><a class="dropdown-item" href="#a1-grymforge">Grymforge</a></li><li><a class="dropdown-item" href="#a1-creche">Mountain Pass &amp; Crèche Y'llek</a></li><li><a class="dropdown-item" href="#a1-encounters">Act I encounter cards</a></li><li><hr class="dropdown-divider"></li><li><h6 class="dropdown-header">Act II</h6></li><li><a class="dropdown-item" href="#a2-scl">Shadow-Cursed Lands</a></li><li><a class="dropdown-item" href="#a2-thorm">Thorm bosses — talk, don't fight</a></li><li><a class="dropdown-item" href="#a2-moonrise">Moonrise Towers</a></li><li><a class="dropdown-item" href="#a2-gauntlet">Gauntlet of Shar</a></li><li><a class="dropdown-item" href="#a2-shadowfell">Shadowfell → Moonrise → Colony</a></li><li><a class="dropdown-item" href="#a2-chosen">The Chosen — Ketheric &amp; Myrkul</a></li><li><a class="dropdown-item" href="#a2-encounters">Act II encounter cards</a></li><li><hr class="dropdown-divider"></li><li><h6 class="dropdown-header">Act III</h6></li><li><a class="dropdown-item" href="#a3-lookout">Wyrm's Lookout</a></li><li><a class="dropdown-item" href="#a3-rivington">Rivington</a></li><li><a class="dropdown-item" href="#a3-crossing">Wyrm's Crossing</a></li><li><a class="dropdown-item" href="#a3-lowercity">Lower City</a></li><li><a class="dropdown-item" href="#a3-allies">Gather your allies</a></li><li><a class="dropdown-item" href="#a3-orin">Orin the Red</a></li><li><a class="dropdown-item" href="#a3-finale">Gortash &amp; the Finale</a></li><li><a class="dropdown-item" href="#a3-encounters">Act III encounter cards</a></li><li><hr class="dropdown-divider"></li><li><h6 class="dropdown-header">Party & builds</h6></li><li><a class="dropdown-item" href="#party-overview">Party composition</a></li><li><a class="dropdown-item" href="#party-why">Why this party</a></li><li><a class="dropdown-item" href="#build-tav">Tav's build</a></li><li><a class="dropdown-item" href="#build-karlach">Karlach's build</a></li><li><a class="dropdown-item" href="#build-astarion">Astarion's build</a></li><li><a class="dropdown-item" href="#build-gale">Gale's build</a></li><li><a class="dropdown-item" href="#swaps">Companion swaps</a></li><li><hr class="dropdown-divider"></li><li><h6 class="dropdown-header">Gear</h6></li><li><a class="dropdown-item" href="#gear-a1-mid">Act I — mid-act</a></li><li><a class="dropdown-item" href="#gear-a1-end">Act I — end of act</a></li><li><a class="dropdown-item" href="#gear-a2-mid">Act II — mid-act</a></li><li><a class="dropdown-item" href="#gear-a2-end">Act II — end of act</a></li><li><a class="dropdown-item" href="#gear-a3-mid">Act III — mid-act</a></li><li><a class="dropdown-item" href="#gear-a3-end">Act III — end of act</a></li><li><hr class="dropdown-divider"></li><li><h6 class="dropdown-header">Tips</h6></li><li><a class="dropdown-item" href="#tips-dying">Why you keep dying</a></li><li><a class="dropdown-item" href="#tips-honour">Honour Mode changes</a></li><li><a class="dropdown-item" href="#tips-combat">Combat fundamentals</a></li><li><a class="dropdown-item" href="#tips-gold">Gold, traders &amp; revives</a></li><li><a class="dropdown-item" href="#tips-inspiration">Save Inspiration for…</a></li><li><a class="dropdown-item" href="#tips-legendary">Legendary actions</a></li><li><hr class="dropdown-divider"></li><li><h6 class="dropdown-header">Help</h6></li><li><a class="dropdown-item" href="#help-using">Using this cheat sheet</a></li><li><a class="dropdown-item" href="#flags">Flags</a></li><li><a class="dropdown-item" href="#help-progress">Backup &amp; restore</a></li><li><a class="dropdown-item" href="#sources">Sources &amp; credits</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container" id="top">
+  <header id="intro">
+    <p class="kicker">Baldur's Gate 3 · Honour Mode</p>
+    <h1>The Bard's Field Manual</h1>
+    <p class="lead">A low-competition, all-carry party and an area-by-area route from the Nautiloid to the Netherbrain. Tick steps as you go; your progress is saved in this browser. New here? Read <a href="#help-using">Help</a>.</p>
+    <div class="party-strip">
+      <a href="#build-tav"><span class="pc">T</span><span><strong>Tav</strong><small>Swords Bard / Paladin</small></span></a>
+      <a href="#build-karlach"><span class="pc">K</span><span><strong>Karlach</strong><small>Bear Barbarian</small></span></a>
+      <a href="#build-astarion"><span class="pc">A</span><span><strong>Astarion</strong><small>Gloom Stalker Assassin</small></span></a>
+      <a href="#build-gale"><span class="pc">G</span><span><strong>Gale</strong><small>Evocation Wizard</small></span></a>
+    </div>
+    <p class="small text-body-secondary mb-0"><em>Warning: contains spoilers.</em></p>
+  </header>
+
+  <div class="toolbar">
+    <div class="profile-ctl">
+      <label class="small fw-semibold" for="profiles">Profile</label>
+      <select class="form-select form-select-sm profile-select" id="profiles"></select>
+      <div class="btn-group btn-group-sm">
+        <button class="btn btn-outline-secondary" type="button" id="profileAdd">Add</button>
+        <button class="btn btn-outline-secondary" type="button" id="profileEdit">Edit</button>
+      </div>
+    </div>
+    <div class="form-check form-switch mb-0">
+      <input class="form-check-input" type="checkbox" role="switch" id="toggleHideCompleted">
+      <label class="form-check-label" for="toggleHideCompleted">Hide completed</label>
+    </div>
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-outline-secondary" id="collapseAll">Collapse all</button>
+      <button type="button" class="btn btn-outline-secondary" id="expandAll">Expand all</button>
+    </div>
+    <div class="overall">
+      <span class="small">Route progress</span>
+      <div class="progress" role="progressbar" aria-label="Playthrough progress" aria-valuemin="0" aria-valuemax="100" id="overallBar"><div class="progress-bar"></div></div>
+      <span class="small" id="overallText"></span>
+    </div>
+    <button class="btn btn-sm btn-outline-secondary" type="button" id="themeToggle" title="Colour theme">Theme</button>
+  </div>
+  <div class="alert alert-warning d-none" id="storageWarning" role="alert">This browser isn't letting the page save progress (private window or blocked site data). Ticks will be lost when you close the tab.</div>
+
+  <div class="tab-content">
+
+<div class="tab-pane show active" id="tabPlaythrough" role="tabpanel" data-section="tabPlaythrough">
+  <h2 class="tab-title">Playthrough <span class="total" data-total="tabPlaythrough"></span></h2>
+  <nav class="toc-box" aria-label="Playthrough contents">
+    <div class="row row-cols-1 row-cols-md-3 g-3"><div class="col"><h3 class="toc-act"><a href="#act1">Act I</a> <span class="total" data-total="act1"></span></h3><ul class="toc"><li class=""><a href="#a1-nautiloid">Prologue — Nautiloid</a> <span class="total" data-total="a1-nautiloid"></span></li><li class=""><a href="#a1-landing">Landing Zone</a> <span class="total" data-total="a1-landing"></span></li><li class=""><a href="#a1-grove">Emerald Grove</a> <span class="total" data-total="a1-grove"></span></li><li class=""><a href="#a1-crypt">Crypt &amp; Chapel Ruins</a> <span class="total" data-total="a1-crypt"></span></li><li class=""><a href="#a1-village">Blighted Village</a> <span class="total" data-total="a1-village"></span></li><li class=""><a href="#a1-risen">Risen Road</a> <span class="total" data-total="a1-risen"></span></li><li class="toc-gear"><a href="#gear-a1-mid">⚔ Gear: Act I mid-act</a></li><li class=""><a href="#a1-underdark">Underdark</a> <span class="total" data-total="a1-underdark"></span></li><li class=""><a href="#a1-goblin">Goblin Camp &amp; Shattered Sanctum</a> <span class="total" data-total="a1-goblin"></span></li><li class=""><a href="#a1-grymforge">Grymforge</a> <span class="total" data-total="a1-grymforge"></span></li><li class=""><a href="#a1-creche">Mountain Pass &amp; Crèche Y'llek</a> <span class="total" data-total="a1-creche"></span></li><li class=""><a href="#a1-encounters">Act I encounter cards</a></li><li class="toc-gear"><a href="#gear-a1-end">⚔ Gear: Act I end</a></li></ul></div><div class="col"><h3 class="toc-act"><a href="#act2">Act II</a> <span class="total" data-total="act2"></span></h3><ul class="toc"><li class=""><a href="#a2-scl">Shadow-Cursed Lands</a> <span class="total" data-total="a2-scl"></span></li><li class=""><a href="#a2-thorm">Thorm bosses — talk, don't fight</a> <span class="total" data-total="a2-thorm"></span></li><li class=""><a href="#a2-moonrise">Moonrise Towers</a> <span class="total" data-total="a2-moonrise"></span></li><li class="toc-gear"><a href="#gear-a2-mid">⚔ Gear: Act II mid-act</a></li><li class=""><a href="#a2-gauntlet">Gauntlet of Shar</a> <span class="total" data-total="a2-gauntlet"></span></li><li class=""><a href="#a2-shadowfell">Shadowfell → Moonrise → Colony</a> <span class="total" data-total="a2-shadowfell"></span></li><li class=""><a href="#a2-chosen">The Chosen — Ketheric &amp; Myrkul</a> <span class="total" data-total="a2-chosen"></span></li><li class=""><a href="#a2-encounters">Act II encounter cards</a></li><li class="toc-gear"><a href="#gear-a2-end">⚔ Gear: Act II end</a></li></ul></div><div class="col"><h3 class="toc-act"><a href="#act3">Act III</a> <span class="total" data-total="act3"></span></h3><ul class="toc"><li class=""><a href="#a3-lookout">Wyrm's Lookout</a> <span class="total" data-total="a3-lookout"></span></li><li class=""><a href="#a3-rivington">Rivington</a> <span class="total" data-total="a3-rivington"></span></li><li class=""><a href="#a3-crossing">Wyrm's Crossing</a> <span class="total" data-total="a3-crossing"></span></li><li class=""><a href="#a3-lowercity">Lower City</a> <span class="total" data-total="a3-lowercity"></span></li><li class="toc-gear"><a href="#gear-a3-mid">⚔ Gear: Act III mid-act</a></li><li class=""><a href="#a3-allies">Gather your allies</a> <span class="total" data-total="a3-allies"></span></li><li class=""><a href="#a3-orin">Orin the Red</a> <span class="total" data-total="a3-orin"></span></li><li class=""><a href="#a3-finale">Gortash &amp; the Finale</a> <span class="total" data-total="a3-finale"></span></li><li class=""><a href="#a3-encounters">Act III encounter cards</a></li><li class="toc-gear"><a href="#gear-a3-end">⚔ Gear: Act III end</a></li></ul></div></div>
+  </nav>
+  <div class="act-head" id="act1">
+    <h2><span class="act-kicker">Walkthrough</span> Act I <span class="total" data-total="act1"></span></h2>
+    <p>The early game is the most dangerous part of the run. Leave Act I around level 6. The goal: get the Everburn Blade, recruit everyone, and arrive in the Shadow-Cursed Lands with the end-of-act gear.</p>
+    <p class="text-body-secondary small">Steps are in order. Do them top to bottom; <a href="#flags">flags</a> mark the moments that can end a run.</p>
+  </div>
+  <div data-section="act1" class="act-body">
+  <section class="cl-section" id="a1-nautiloid" data-section="a1-nautiloid">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-nautiloid-body" aria-expanded="true" aria-controls="a1-nautiloid-body" aria-label="Show or hide Prologue — Nautiloid"></button>
+      <h3><a class="anchor" href="#a1-nautiloid" title="Link to this section">Prologue — Nautiloid</a> <span class="total" data-total="a1-nautiloid"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-nautiloid-body">
+      <ol class="checklist">
+        <li data-id="a1-nautiloid-1"><span class="step-num">1</span> <span class="step-text">Leave the brain pool alone. Keep the intellect devourer 'Us' away from other devourer fights (or neutralise it) — it turns on you if it watches you kill its kin.</span></li>
+        <li data-id="a1-nautiloid-2"><span class="step-num">2</span> <span class="step-text">Pick up three light containers along the way; you'll stack them later as a barricade.</span></li>
+        <li data-id="a1-nautiloid-3"><span class="step-num">3</span> <span class="step-text">Grab the Eldritch Rune from the side room (kill the devourers there), use it on the console, free Shadowheart and recruit her.</span></li>
+        <li data-id="a1-nautiloid-4"><span class="step-num">4</span> <span class="step-text">Press 'Awaken' on the console for an extra XP fight.</span></li>
+        <li data-id="a1-nautiloid-5"><span class="step-num">5</span> <span class="step-text">Before the transponder room: heal, then stack the three containers in the narrowest doorway to slow the cambions.</span></li>
+        <li data-id="a1-nautiloid-6"><span class="step-num">6</span> <span class="step-text">Have Shadowheart prepare Command.</span></li>
+        <li data-id="a1-nautiloid-7"><span class="step-num">7</span> <span class="step-text">Cast Command: Drop on Commander Zhalk to take the Everburn Blade. If it fails, try to kill him. No sword → consider restarting; it's cheap at this point. (<a href="#enc-zhalk">encounter card</a>)</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a></span></li>
+        <li data-id="a1-nautiloid-8"><span class="step-num">8</span> <span class="step-text">Clear the first wave of imps, park a ranged character on the transponder, kill what you safely can, loot, and click the transponder the moment things turn.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-landing" data-section="a1-landing">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-landing-body" aria-expanded="true" aria-controls="a1-landing-body" aria-label="Show or hide Landing Zone"></button>
+      <h3><a class="anchor" href="#a1-landing" title="Link to this section">Landing Zone</a> <span class="total" data-total="a1-landing"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-landing-body">
+      <ol class="checklist">
+        <li data-id="a1-landing-1"><span class="step-num">1</span> <span class="step-text">Recruit Shadowheart on the beach. Give the Everburn Blade to Lae'zel once you have her.</span></li>
+        <li data-id="a1-landing-2"><span class="step-num">2</span> <span class="step-text">Intellect devourers near the beach: only two of you — use the slope and be ready to run. Optional; you can path around to Gale's waypoint.</span></li>
+        <li data-id="a1-landing-3"><span class="step-num">3</span> <span class="step-text">Kill the unconscious mind flayer without talking to it.</span></li>
+        <li data-id="a1-landing-4"><span class="step-num">4</span> <span class="step-text">Pull Gale out of the portal and recruit him.</span></li>
+        <li data-id="a1-landing-5"><span class="step-num">5</span> <span class="step-text">Talk the tieflings into freeing Lae'zel. Use any Inspiration. Killing them breaks your Paladin oath.</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a><a class="flag flag-oath" href="#flags">Oath</a></span></li>
+        <li data-id="a1-landing-6"><span class="step-num">6</span> <span class="step-text">Recruit Astarion. Grab the Harper cache by the water.</span></li>
+        <li data-id="a1-landing-7"><span class="step-num">7</span> <span class="step-text">Fight the goblin raid at the Grove gate now (<a href="#enc-goblin-raid">encounter card</a>).</span></li>
+        <li data-id="a1-landing-8"><span class="step-num">8</span> <span class="step-text">Enter the Grove and defuse the Zevlor / Aradin standoff.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-grove" data-section="a1-grove">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-grove-body" aria-expanded="true" aria-controls="a1-grove-body" aria-label="Show or hide Emerald Grove"></button>
+      <h3><a class="anchor" href="#a1-grove" title="Link to this section">Emerald Grove</a> <span class="total" data-total="a1-grove"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-grove-body">
+      <ol class="checklist">
+        <li data-id="a1-grove-1"><span class="step-num">1</span> <span class="step-text">Go past the bear to the sanctum; talk to Arabella's parents, try to talk Kagha down, then report back either way.</span></li>
+        <li data-id="a1-grove-2"><span class="step-num">2</span> <span class="step-text">Save Nadira from the bugbear assassin.</span></li>
+        <li data-id="a1-grove-3"><span class="step-num">3</span> <span class="step-text">Be honest with Nettie about your new powers, then take her mind flayer specimen when she leaves the room.</span></li>
+        <li data-id="a1-grove-4"><span class="step-num">4</span> <span class="step-text">Recruit Wyll. Help the training-dummy tiefling. Side with the tiefling accused of theft.</span></li>
+        <li data-id="a1-grove-5"><span class="step-num">5</span> <span class="step-text">Speak with Animals (potion or scroll) → talk to the Strange Ox.</span></li>
+        <li data-id="a1-grove-6"><span class="step-num">6</span> <span class="step-text">Auntie Ethel: play nice, buy all three Elixirs of Hill Giant Strength.</span></li>
+        <li data-id="a1-grove-7"><span class="step-num">7</span> <span class="step-text">Let Mol's thief 'pickpocket' you — be nice. Send irreplaceable items to camp first; you can reclaim the rest from Mol later.</span></li>
+        <li data-id="a1-grove-8"><span class="step-num">8</span> <span class="step-text">Pick up Zevlor's quest; bet with Lakrissa; trade with Volo once (first conversation only).</span></li>
+        <li data-id="a1-grove-9"><span class="step-num">9</span> <span class="step-text">Move the bear off the elevator, deal with the squirrel, try to save (not free) Sazza, help Alfira.</span></li>
+        <li data-id="a1-grove-10"><span class="step-num">10</span> <span class="step-text">Raise approval with Dammon and Arron by gifting gold (see the <a href="#tips-gold">cheap-approval trick</a>; re-level with <a href="#build-tav">Tav's build</a>). Buy thieves' tools.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-crypt" data-section="a1-crypt">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-crypt-body" aria-expanded="true" aria-controls="a1-crypt-body" aria-label="Show or hide Crypt &amp; Chapel Ruins"></button>
+      <h3><a class="anchor" href="#a1-crypt" title="Link to this section">Crypt &amp; Chapel Ruins</a> <span class="total" data-total="a1-crypt"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-crypt-body">
+      <ol class="checklist">
+        <li data-id="a1-crypt-1"><span class="step-num">1</span> <span class="step-text">Use thieves' tools on the locked door by the first waypoint. Disarm or shoot the central trap; leave one character outside.</span></li>
+        <li data-id="a1-crypt-2"><span class="step-num">2</span> <span class="step-text">Loot the skeletons' weapons BEFORE they wake up, grab the book in the side room, then press the button in Withers' chamber and fight.</span></li>
+        <li data-id="a1-crypt-3"><span class="step-num">3</span> <span class="step-text">Recruit Withers. Respec Astarion into <a href="#build-astarion">Gloom Stalker</a> now.</span></li>
+        <li data-id="a1-crypt-4"><span class="step-num">4</span> <span class="step-text">Clear the tunnel under the Grove near Sazza's cage; rescue the man on the ground.</span></li>
+        <li data-id="a1-crypt-5"><span class="step-num">5</span> <span class="step-text">Loot the small spider nest and the Guidance amulet. Swap it on before important dialogue checks.</span></li>
+        <li data-id="a1-crypt-6"><span class="step-num">6</span> <span class="step-text">Talk peacefully past the goblins (drow dialogue) toward the camp; get the priest of Loviatar buff; free Volo (talk to him before and after the next long rest).</span></li>
+        <li data-id="a1-crypt-7"><span class="step-num">7</span> <span class="step-text">Chapel ruins: approach from the left and pass the paladin check to make the bandits leave. Fail → kill them. Cut the rope, talk your way in, clear and loot.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-village" data-section="a1-village">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-village-body" aria-expanded="true" aria-controls="a1-village-body" aria-label="Show or hide Blighted Village"></button>
+      <h3><a class="anchor" href="#a1-village" title="Link to this section">Blighted Village</a> <span class="total" data-total="a1-village"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-village-body">
+      <ol class="checklist">
+        <li data-id="a1-village-1"><span class="step-num">1</span> <span class="step-text">Talk to Aradin on the bridge. Recruit Scratch.</span></li>
+        <li data-id="a1-village-2"><span class="step-num">2</span> <span class="step-text">Loot the blacksmith's basement (Masterwork Weapon quest) and the apothecary cellar; read the books, kill the skeletons.</span></li>
+        <li data-id="a1-village-3"><span class="step-num">3</span> <span class="step-text">Permanently recruit Shovel: temporarily respec someone to Wizard/Warlock, read the scroll outside the mirror (don't learn it), pick the first option on every line, walk through the mirror and talk to Shovel again.</span><span class="flags"><a class="flag flag-cheese" href="#flags">Optional cheese</a></span></li>
+        <li data-id="a1-village-4"><span class="step-num">4</span> <span class="step-text">Destroy the Necromancy of Thay. Deceive the ogres into joining you.</span></li>
+        <li data-id="a1-village-5"><span class="step-num">5</span> <span class="step-text">Windmill: free Barcus — USE THE BRAKE LEVER. Loot the boots and the smokepowder satchel below.</span></li>
+        <li data-id="a1-village-6"><span class="step-num">6</span> <span class="step-text">Kill the sleeping bugbear; try for the knife in the meat.</span></li>
+        <li data-id="a1-village-7"><span class="step-num">7</span> <span class="step-text">Kill all goblins in the village, the outpost and the drunk goblins near the mountain-pass path. Then the bloated hyena.</span></li>
+        <li data-id="a1-village-8"><span class="step-num">8</span> <span class="step-text">Rescue Mirkon from the harpies (<a href="#enc-harpies">encounter card</a>), then follow him to Mol and loot the Colour Spray ring in the nest.</span></li>
+        <li data-id="a1-village-9"><span class="step-num">9</span> <span class="step-text">Clear the swamp traps, kill the mud mephits, take the shadow-druid evidence from the tree. Kill the redcaps; meet the Gur hunter; unlock the waypoint. Expose Kagha later.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-risen" data-section="a1-risen">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-risen-body" aria-expanded="true" aria-controls="a1-risen-body" aria-label="Show or hide Risen Road"></button>
+      <h3><a class="anchor" href="#a1-risen" title="Link to this section">Risen Road</a> <span class="total" data-total="a1-risen"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-risen-body">
+      <ol class="checklist">
+        <li data-id="a1-risen-1"><span class="step-num">1</span> <span class="step-text">Kill the loose gnolls (save Flind for later). Recruit <a href="#build-karlach">Karlach</a> — your final party is now online.</span><span class="flags"><a class="flag flag-swap" href="#swaps">Swap</a></span></li>
+        <li data-id="a1-risen-2"><span class="step-num">2</span> <span class="step-text">Bring Wyll to the inn door for the strength check; send only Tav inside. Rescue the trapped man and Florrick, find the dowry, calm the bull.</span></li>
+        <li data-id="a1-risen-3"><span class="step-num">3</span> <span class="step-text">Zhentarim hideout: send one character in (in case the illithid check fails). Take the shipment quest. Buy Oskar and send him home.</span></li>
+        <li data-id="a1-risen-4"><span class="step-num">4</span> <span class="step-text">Kill the ogre/hobgoblin couple in the barn. Kill the ogre in Priestess Gut's entrance area and loot the Amulet of Misty Step. Solve the light puzzle.</span></li>
+      </ol>
+    </div>
+  </section>
+  <a class="gear-checkpoint" href="#gear-a1-mid"><span class="gc-icon" aria-hidden="true">&#9876;</span> <span><strong>Gear checkpoint:</strong> Act I mid-act — before the Underdark (~lvl 3–4)</span> <span class="gc-go">Open gear table &rarr;</span></a>
+  <section class="cl-section" id="a1-underdark" data-section="a1-underdark">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-underdark-body" aria-expanded="true" aria-controls="a1-underdark-body" aria-label="Show or hide Underdark"></button>
+      <h3><a class="anchor" href="#a1-underdark" title="Link to this section">Underdark</a> <span class="total" data-total="a1-underdark"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-underdark-body">
+      <ol class="checklist">
+        <li data-id="a1-underdark-1"><span class="step-num">1</span> <span class="step-text">Loot the Selûnite outpost. Bring Shadowheart to destroy the crystal after the minotaur (Inspiration).</span><span class="flags"><a class="flag flag-swap" href="#swaps">Swap</a></span></li>
+        <li data-id="a1-underdark-2"><span class="step-num">2</span> <span class="step-text">Myconid colony: hurt the Bulette as much as possible before it flees. Tell Sovereign Spaw the truth; befriend Derryth, the hobgoblin trader and Omeluum; take every quest; cure Thulla; recruit Glut.</span></li>
+        <li data-id="a1-underdark-3"><span class="step-num">3</span> <span class="step-text">Kill the minotaurs, save Baelen and the Noblestalk; give the Noblestalk to Derryth.</span></li>
+        <li data-id="a1-underdark-4"><span class="step-num">4</span> <span class="step-text">Hook horrors: kill the first, then let the Bulette and the rest fight each other. Flee if it turns.</span></li>
+        <li data-id="a1-underdark-5"><span class="step-num">5</span> <span class="step-text">Get the Sussur bark, forge the Sussur weapon. Loot the dog's grave. Kill the cultists over the dying dwarf.</span></li>
+        <li data-id="a1-underdark-6"><span class="step-num">6</span> <span class="step-text">Back on the surface: kill the owlbear boss, spare the cub (<a href="#enc-owlbear">encounter card</a>), the false Paladins of Tyr (bring Karlach), heal Karlach with Infernal Iron, kill Flind and the gnolls, then the Zhentarim — take the shipment chest unopened.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-goblin" data-section="a1-goblin">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-goblin-body" aria-expanded="true" aria-controls="a1-goblin-body" aria-label="Show or hide Goblin Camp &amp; Shattered Sanctum"></button>
+      <h3><a class="anchor" href="#a1-goblin" title="Link to this section">Goblin Camp &amp; Shattered Sanctum</a> <span class="total" data-total="a1-goblin"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-goblin-body">
+      <ol class="checklist">
+        <li data-id="a1-goblin-1"><span class="step-num">1</span> <span class="step-text">Buy anything good from camp traders first. Clear the camp except Minthara, Dror Ragzlin and Roah. Start with Halsin's prison.</span></li>
+        <li data-id="a1-goblin-2"><span class="step-num">2</span> <span class="step-text">Get branded by Priestess Gut, then fight her in her room before she calls the sanctum.</span></li>
+        <li data-id="a1-goblin-3"><span class="step-num">3</span> <span class="step-text">Free the mercenary on the rack and the goblin in the cage. Send the Zhentarim smokepowder barrels to camp.</span></li>
+        <li data-id="a1-goblin-4"><span class="step-num">4</span> <span class="step-text">Hand in the chest at the Zhentarim hideout, buy the Titanstring Bow from Brem, then clear the hideout from the upper level. Loot the Infernal Iron and iron flask (don't open the flask).</span></li>
+        <li data-id="a1-goblin-5"><span class="step-num">5</span> <span class="step-text">Kill both remaining leaders (<a href="#enc-leaders">encounter card</a>); knock Minthara out (non-lethal). Grab the Spider Lyre. Loot Ragzlin's barrels and the Gloves of the Growling Underdog.</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a></span></li>
+        <li data-id="a1-goblin-6"><span class="step-num">6</span> <span class="step-text">Talk to Halsin, Zevlor; party with the tieflings. Heal Padirna's legs.</span></li>
+        <li data-id="a1-goblin-7"><span class="step-num">7</span> <span class="step-text">Glut's spectator ambush, arcane tower (solve Bernard's puzzle; get Omeluum's mushrooms), duergar on the beach. Kill Glut when he asks you to kill Spaw; collect both rewards and the Nere quest. Forge the Mourning Frost staff.</span></li>
+        <li data-id="a1-goblin-8"><span class="step-num">8</span> <span class="step-text">Kuo-toa shrine: Nature check, then claim Blurg's 'god' for yourself. Phase Spider Matriarch (<a href="#enc-matriarch">encounter card</a>). Expose Kagha.</span></li>
+        <li data-id="a1-goblin-9"><span class="step-num">9</span> <span class="step-text">Auntie Ethel: find Mayrina's brothers first, start the fight defending Mayrina (<a href="#enc-ethel">encounter card</a>).</span><span class="flags"><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a><a class="flag flag-oath" href="#flags">Oath</a></span></li>
+        <li data-id="a1-goblin-10"><span class="step-num">10</span> <span class="step-text">Githyanki patrol at the mountain-pass entrance: tell the truth to fight Sarth Baretha (<a href="#enc-sarth">encounter card</a>). Then kill Bernard in the arcane tower.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-grymforge" data-section="a1-grymforge">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-grymforge-body" aria-expanded="true" aria-controls="a1-grymforge-body" aria-label="Show or hide Grymforge"></button>
+      <h3><a class="anchor" href="#a1-grymforge" title="Link to this section">Grymforge</a> <span class="total" data-total="a1-grymforge"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-grymforge-body">
+      <ol class="checklist">
+        <li data-id="a1-grymforge-1"><span class="step-num">1</span> <span class="step-text">Show your brand on the boat. Refuse to pay the duergar. Don't long rest until you're ready to free Nere.</span></li>
+        <li data-id="a1-grymforge-2"><span class="step-num">2</span> <span class="step-text">Help the archaeologists; team up with the ox (Speak with Animals) to clear rubble; try to lift the invisibility ring from the corpse.</span></li>
+        <li data-id="a1-grymforge-3"><span class="step-num">3</span> <span class="step-text">Isolate and kill every duergar except the archaeologists. Steal or persuade for the Runepowder; sell the barrel to the archaeologist trader, kill him, loot it back.</span><span class="flags"><a class="flag flag-cheese" href="#flags">Optional cheese</a></span></li>
+        <li data-id="a1-grymforge-4"><span class="step-num">4</span> <span class="step-text">Clear around Nere's rubble, long rest, blow the rubble with your own bombs, stop Nere killing anyone, kill him.</span></li>
+        <li data-id="a1-grymforge-5"><span class="step-num">5</span> <span class="step-text">Loot Nere with Tav and roll to decapitate him.</span><span class="flags"><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a></span></li>
+        <li data-id="a1-grymforge-6"><span class="step-num">6</span> <span class="step-text">Talk to the gnomes (Barcus first). Take Wulbren's quest.</span></li>
+        <li data-id="a1-grymforge-7"><span class="step-num">7</span> <span class="step-text">Mimic + Harper cache. Do NOT die to the trapped chest on the ledge on the way.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a1-grymforge-8"><span class="step-num">8</span> <span class="step-text">Adamantine Forge: animated armours, magma mephits (loot adamantine), catwalk (send a rogue for the pressure plates), merregons, lava elemental. Take the monk's amulet quest; collect moulds.</span></li>
+        <li data-id="a1-grymforge-9"><span class="step-num">9</span> <span class="step-text">Grym: the 'Owlbear from the top rope' drop one-shots him (<a href="#enc-grym">encounter card</a>).</span><span class="flags"><a class="flag flag-cheese" href="#flags">Optional cheese</a></span></li>
+        <li data-id="a1-grymforge-10"><span class="step-num">10</span> <span class="step-text">Forge Adamantine Splint Armour (Tav) and Adamantine Scale Mail (Karlach). Loot the Underdark and wilderness — you won't be back.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-creche" data-section="a1-creche">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-creche-body" aria-expanded="true" aria-controls="a1-creche-body" aria-label="Show or hide Mountain Pass &amp; Crèche Y&#x27;llek"></button>
+      <h3><a class="anchor" href="#a1-creche" title="Link to this section">Mountain Pass &amp; Crèche Y'llek</a> <span class="total" data-total="a1-creche"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-creche-body">
+      <ol class="checklist">
+        <li data-id="a1-creche-1"><span class="step-num">1</span> <span class="step-text">Death shepherds: kill the second one before it can revive the first. Watch for paralysis.</span></li>
+        <li data-id="a1-creche-2"><span class="step-num">2</span> <span class="step-text">Send Elminster to camp. Refuse Esther's egg quest but buy The Graceful Cloth for Astarion.</span></li>
+        <li data-id="a1-creche-3"><span class="step-num">3</span> <span class="step-text">Cable car: walk the path and send ONE person to disarm the repulsor mines — the car can drop the whole party.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a1-creche-4"><span class="step-num">4</span> <span class="step-text">Blue jay quest (Speak with Animals); kobolds; gremishkas; eagles (stay away from the edge); collect all ceremonial weapons; solve the Dawnmaster puzzle for the crest.</span></li>
+        <li data-id="a1-creche-5"><span class="step-num">5</span> <span class="step-text">Crèche with Lae'zel. Use the trader (only chance). Save the kid in training; stop the infirmary bullies.</span><span class="flags"><a class="flag flag-swap" href="#swaps">Swap</a></span></li>
+        <li data-id="a1-creche-6"><span class="step-num">6</span> <span class="step-text">Zaithisk chair: respec someone to max INT and WIS first and burn all Inspiration. Don't let Lae'zel go first (DC 30).</span><span class="flags"><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a></span></li>
+        <li data-id="a1-creche-7"><span class="step-num">7</span> <span class="step-text">Clear the Crèche except Kith'rak (gate and hallway guards first). Steal the egg into Lae'zel's pack. Long rest, then fight Kith'rak spread out; disarm her.</span></li>
+        <li data-id="a1-creche-8"><span class="step-num">8</span> <span class="step-text">Inquisitor: comply and hand over the artefact. When Vlaakith appears, KNEEL.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a1-creche-9"><span class="step-num">9</span> <span class="step-text">Exiting the artefact starts the inquisitor fight — enter turn-based right before you exit to set up.</span></li>
+        <li data-id="a1-creche-10"><span class="step-num">10</span> <span class="step-text">Grease the left statue before the puzzle. Send ONE character through the trapped hall. Place the Dawnmaster's crest; take the Blood of Lathander without stealing it.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a1-creche-11"><span class="step-num">11</span> <span class="step-text">Confront Voss; remind Lae'zel about the ghustil and to trust Voss. Long rest into Act II.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a1-encounters">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a1-encounters-body" aria-expanded="true" aria-controls="a1-encounters-body" aria-label="Show or hide Act I encounter cards"></button>
+      <h3><a class="anchor" href="#a1-encounters" title="Link to this section">Act I encounter cards</a></h3>
+    </div>
+    <div class="section-body collapse show" id="a1-encounters-body">
+      <p class="section-sub">Threat, how to set up before the fight, what to do on turn one, and how to get out if it goes wrong.</p>
+      <div class="row row-cols-1 row-cols-lg-2 g-3">
+        <div class="col"><div class="card enc-card h-100" id="enc-zhalk">
+          <div class="card-header"><a class="anchor" href="#enc-zhalk">Commander Zhalk (Prologue)</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Very high — he and the cambions will wipe a level-1 party.</dd><dt>Set-up</dt><dd>Barricade the doorway with stacked containers. Shadowheart prepares Command.</dd><dt>Execute</dt><dd>Command: Drop → grab the Everburn Blade. Kill imps, keep a ranged character on the transponder.</dd><dt>Bail-out</dt><dd>Click the transponder. Don't chase XP.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-goblin-raid">
+          <div class="card-header"><a class="anchor" href="#enc-goblin-raid">Goblin raid at the Grove gate</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Medium — many goblins, archers on the walls.</dd><dt>Set-up</dt><dd>Arrive from the right side; take the high wall positions near the gate.</dd><dt>Execute</dt><dd>Kill the archers on elevation first. Let the tieflings and druids soak hits. Fire + grease on clumps.</dd><dt>Bail-out</dt><dd>Retreat inside the gate; NPC allies keep fighting.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-harpies">
+          <div class="card-header"><a class="anchor" href="#enc-harpies">Harpies (Rescue Mirkon)</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>High — the singing harpy charms your party into walking to her.</dd><dt>Set-up</dt><dd>Approach in stealth. The singing harpy always spawns in the same spot; silence that area or pre-target her.</dd><dt>Execute</dt><dd>Kill the singer first. Everyone else focuses the nearest harpy.</dd><dt>Bail-out</dt><dd>Drow Tav has advantage vs charm. Flee if two characters are charmed off cliffs.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-owlbear">
+          <div class="card-header"><a class="anchor" href="#enc-owlbear">Owlbear</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>High — Call Consort brings a second owlbear.</dd><dt>Set-up</dt><dd>Fight from the cave-mouth ledge. Pre-buff (Bless, elixirs).</dd><dt>Execute</dt><dd>Open from stealth with Astarion and everything you have. Smokepowder on the mother.</dd><dt>Bail-out</dt><dd>Back out of the cave; owlbears don't chase far.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-matriarch">
+          <div class="card-header"><a class="anchor" href="#enc-matriarch">Phase Spider Matriarch</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>High — summons and webs.</dd><dt>Set-up</dt><dd>Break eggs from stealth first. Stay above the drop.</dd><dt>Execute</dt><dd>Kill phase spiders as they blink in; fire on webs.</dd><dt>Bail-out</dt><dd>Climb back up the way you came.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-leaders">
+          <div class="card-header"><a class="anchor" href="#enc-leaders">Leaders: Gut, Ragzlin, Minthara</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Very high if they fight together.</dd><dt>Set-up</dt><dd>Fight each leader separately. Pull Ragzlin's followers away or kill them first.</dd><dt>Execute</dt><dd>Gut: kill her in her room before she calls help. Ragzlin: no followers nearby = no Action Surges. Minthara: knock her out.</dd><dt>Bail-out</dt><dd>Doors and chokepoints; leave the building and long rest.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-ethel">
+          <div class="card-header"><a class="anchor" href="#enc-ethel">Auntie Ethel</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>High — illusions, poison, a fake Mayrina.</dd><dt>Set-up</dt><dd>Find Mayrina's brothers first. Skip the gas traps (feather fall + glorious vaulting or cover vents). See-invisibility (Volo's eye / potion) reveals her.</dd><dt>Execute</dt><dd>Open from an invisibility potion, pre-click to free Mayrina. Splash water on the real Mayrina to tell her apart. The real Ethel's cloak has brown tally marks; illusions are green. Silence stops illusions — drop it before she surrenders.</dd><dt>Bail-out</dt><dd>At ~20 HP stop all damage; get Tav in melee range for the surrender talk; burn Inspiration on Intimidate (breaks oath).</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-sarth">
+          <div class="card-header"><a class="anchor" href="#enc-sarth">Sarth Baretha (githyanki patrol)</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Very high — melee hits extremely hard.</dd><dt>Set-up</dt><dd>Get a surprise round: send one character in to reposition them if needed.</dd><dt>Execute</dt><dd>Disarm Sarth (Command: Drop from Tav). Focus her; Karlach holds the line.</dd><dt>Bail-out</dt><dd>Be ready to flee and retry.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-grym">
+          <div class="card-header"><a class="anchor" href="#enc-grym">Grym (Adamantine Forge)</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Very high in a fair fight.</dd><dt>Set-up</dt><dd>One character lowers the platform, then everyone stands above Grym out of combat. Respec someone to Druid (Owlbear form).</dd><dt>Execute</dt><dd>Owlbear + Elixir of the Colossus + Potion of Glorious Vaulting + Longstrider + Enlarge + Feather Fall, then Jump (not Brutal Leap) as close to Grym as allowed.</dd><dt>Bail-out</dt><dd>Missing any buff means no one-shot — use turn-based mode so durations don't tick.</dd></dl></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+  <a class="gear-checkpoint" href="#gear-a1-end"><span class="gc-icon" aria-hidden="true">&#9876;</span> <span><strong>Gear checkpoint:</strong> Act I end — leaving for Act II (~lvl 6)</span> <span class="gc-go">Open gear table &rarr;</span></a>  </div>
+  <div class="act-head" id="act2">
+    <h2><span class="act-kicker">Walkthrough</span> Act II <span class="total" data-total="act2"></span></h2>
+    <p>Act II is short but holds the two biggest run-killers: the Shadow-Cursed Shambling Mound and Ketheric Thorm. Arrive around level 6–7, leave around level 9–10.</p>
+    <p class="text-body-secondary small">Steps are in order. Do them top to bottom; <a href="#flags">flags</a> mark the moments that can end a run.</p>
+  </div>
+  <div data-section="act2" class="act-body">
+  <section class="cl-section" id="a2-scl" data-section="a2-scl">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a2-scl-body" aria-expanded="true" aria-controls="a2-scl-body" aria-label="Show or hide Shadow-Cursed Lands"></button>
+      <h3><a class="anchor" href="#a2-scl" title="Link to this section">Shadow-Cursed Lands</a> <span class="total" data-total="a2-scl"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a2-scl-body">
+      <ol class="checklist">
+        <li data-id="a2-scl-1"><span class="step-num">1</span> <span class="step-text">Kill the greeting goblin; at the camp use the illithid check to make the dog-handler kill himself; clear the camp.</span></li>
+        <li data-id="a2-scl-2"><span class="step-num">2</span> <span class="step-text">If not level 7, do the shadow ambushes now — but NOT Reithwin and NOT the Shambling Mound yet.</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a></span></li>
+        <li data-id="a2-scl-3"><span class="step-num">3</span> <span class="step-text">Play the Spider Lyre at the goblin camp and kill Kar'niss there (<a href="#enc-karniss">encounter card</a>). Free the pixie (lantern) for the moonlight buff.</span><span class="flags"><a class="flag flag-boss" href="#tips-legendary">Boss</a></span></li>
+        <li data-id="a2-scl-4"><span class="step-num">4</span> <span class="step-text">Last Light Inn: comply with Jaheira; tell her the parasite is changing you. Don't talk to Isobel yet.</span></li>
+        <li data-id="a2-scl-5"><span class="step-num">5</span> <span class="step-text">Take Rolan's quest; talk to Mol and Raphael (don't encourage Mol's deal). Bring Karlach to Dammon.</span></li>
+        <li data-id="a2-scl-6"><span class="step-num">6</span> <span class="step-text">Respec to level 1 and max approval with the Last Light traders (<a href="#tips-gold">how</a>; re-level with <a href="#build-tav">Tav's build</a>). Buy the Cloak of Protection (Talli) and Darkfire Shortbow (Dammon).</span></li>
+        <li data-id="a2-scl-7"><span class="step-num">7</span> <span class="step-text">Keep feeding Dammon Infernal Iron (Flawed Helldusk pieces). Talk to the Strange Ox, Alfira, the waterfront lady, Florrick; examine Flame Cullagh; report to Halsin.</span></li>
+        <li data-id="a2-scl-8"><span class="step-num">8</span> <span class="step-text">Fleshmelter Cloak via the morgue; find Arabella and her parents.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a2-thorm" data-section="a2-thorm">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a2-thorm-body" aria-expanded="true" aria-controls="a2-thorm-body" aria-label="Show or hide Thorm bosses — talk, don&#x27;t fight"></button>
+      <h3><a class="anchor" href="#a2-thorm" title="Link to this section">Thorm bosses — talk, don't fight</a> <span class="total" data-total="a2-thorm"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a2-thorm-body">
+      <ol class="checklist">
+        <li data-id="a2-thorm-1"><span class="step-num">1</span> <span class="step-text">Visit a Thorm boss each time you have 4 Inspiration. The rogue/deception options tend to have the lowest DCs; Tav's Expertise makes this the Bard's best moment.</span><span class="flags"><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a></span></li>
+        <li data-id="a2-thorm-2"><span class="step-num">2</span> <span class="step-text">Thisobald: afterwards bring the book to the raven-man; punish the lady but don't make her stab herself (oath). Craft Thisobald's poison.</span><span class="flags"><a class="flag flag-oath" href="#flags">Oath</a></span></li>
+        <li data-id="a2-thorm-3"><span class="step-num">3</span> <span class="step-text">Malus: kill the staff, keep the Eversight Ring (blindness immunity) for Ketheric. Take the lute back to Halsin and do the portal defence fight.</span></li>
+        <li data-id="a2-thorm-4"><span class="step-num">4</span> <span class="step-text">Gerringothe: loot.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a2-moonrise" data-section="a2-moonrise">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a2-moonrise-body" aria-expanded="true" aria-controls="a2-moonrise-body" aria-label="Show or hide Moonrise Towers"></button>
+      <h3><a class="anchor" href="#a2-moonrise" title="Link to this section">Moonrise Towers</a> <span class="total" data-total="a2-moonrise"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a2-moonrise-body">
+      <ol class="checklist">
+        <li data-id="a2-moonrise-1"><span class="step-num">1</span> <span class="step-text">Enter peacefully; choose trial by combat for the goblins; take Z'rell's quest (loyal option).</span></li>
+        <li data-id="a2-moonrise-2"><span class="step-num">2</span> <span class="step-text">Destroy the shadow-weave rune in Balthazar's secret room. Turn the gnolls in the kitchen. Talk to Araj with Astarion; drink the strength potion on Tav.</span></li>
+        <li data-id="a2-moonrise-3"><span class="step-num">3</span> <span class="step-text">Oubliette hook horror, loot. Kill everyone in the prison and docks; take the tadpoles; free Minthara; collect Wulbren's tools and hand them over.</span></li>
+        <li data-id="a2-moonrise-4"><span class="step-num">4</span> <span class="step-text">Escape by boat; get everyone scanned at the Last Light docks; finish Wulbren and Tiefling quests.</span></li>
+        <li data-id="a2-moonrise-5"><span class="step-num">5</span> <span class="step-text">Shadowheart's flower; meenlocks + Selûnite resistance; Mason's Guild; meazel; statue shrine (with Shadowheart); acid pit in the morgue.</span><span class="flags"><a class="flag flag-swap" href="#swaps">Swap</a></span></li>
+        <li data-id="a2-moonrise-6"><span class="step-num">6</span> <span class="step-text">Cursed kuo-toa: stay on the rock and shoot them out of invisibility for free XP.</span></li>
+        <li data-id="a2-moonrise-7"><span class="step-num">7</span> <span class="step-text">Shadow-Cursed Shambling Mound: make sure someone can't be rooted and can run; fight in stages; never near chasms; Arrows of Roaring Thunder carry it (<a href="#enc-mound">encounter card</a>).</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a2-moonrise-8"><span class="step-num">8</span> <span class="step-text">Clear Moonrise. Bring thunder damage for the eyes; engage the throne room from the main door so you can flee to the waypoint.</span></li>
+        <li data-id="a2-moonrise-9"><span class="step-num">9</span> <span class="step-text">READ Ketheric's wife's diary from his chest and keep it.</span></li>
+        <li data-id="a2-moonrise-10"><span class="step-num">10</span> <span class="step-text">Oliver fight; githyanki ambush (surprise them).</span></li>
+        <li data-id="a2-moonrise-11"><span class="step-num">11</span> <span class="step-text">Isobel: block the side balcony door with a jar first; throw an invisibility potion at her FEET (never target her). Don't bring Shadowheart into the talk. Kill Marcus fast.</span></li>
+        <li data-id="a2-moonrise-12"><span class="step-num">12</span> <span class="step-text">Talk to Raphael outside the Mausoleum with Astarion.</span></li>
+      </ol>
+    </div>
+  </section>
+  <a class="gear-checkpoint" href="#gear-a2-mid"><span class="gc-icon" aria-hidden="true">&#9876;</span> <span><strong>Gear checkpoint:</strong> Act II mid-act — after Last Light shopping</span> <span class="gc-go">Open gear table &rarr;</span></a>
+  <section class="cl-section" id="a2-gauntlet" data-section="a2-gauntlet">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a2-gauntlet-body" aria-expanded="true" aria-controls="a2-gauntlet-body" aria-label="Show or hide Gauntlet of Shar"></button>
+      <h3><a class="anchor" href="#a2-gauntlet" title="Link to this section">Gauntlet of Shar</a> <span class="total" data-total="a2-gauntlet"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a2-gauntlet-body">
+      <ol class="checklist">
+        <li data-id="a2-gauntlet-1"><span class="step-num">1</span> <span class="step-text">Shadowheart must be in the party.</span><span class="flags"><a class="flag flag-swap" href="#swaps">Swap</a></span></li>
+        <li data-id="a2-gauntlet-2"><span class="step-num">2</span> <span class="step-text">Statue puzzle: disarm a vent or Misty Step to the centre.</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a></span></li>
+        <li data-id="a2-gauntlet-3"><span class="step-num">3</span> <span class="step-text">Cloakers: send only ranged characters to a mushroom they can't reach.</span></li>
+        <li data-id="a2-gauntlet-4"><span class="step-num">4</span> <span class="step-text">Balthazar: buy his Potion of Speed through the trade window; stash enemy corpses where he can't raise them; lure his guards away; kill him here, not in the Shadowfell (<a href="#enc-balthazar">encounter card</a>).</span><span class="flags"><a class="flag flag-boss" href="#tips-legendary">Boss</a></span></li>
+        <li data-id="a2-gauntlet-5"><span class="step-num">5</span> <span class="step-text">Soft-step trial: walk a character to the end BEFORE activating it. Faith-leap: Misty Step or fly.</span><span class="flags"><a class="flag flag-cheese" href="#flags">Optional cheese</a></span></li>
+        <li data-id="a2-gauntlet-6"><span class="step-num">6</span> <span class="step-text">Library: shoot the librarian without aggroing the rest. Loot the Spear of Night.</span></li>
+        <li data-id="a2-gauntlet-7"><span class="step-num">7</span> <span class="step-text">Yurgir: talk him into falling on his sword.</span><span class="flags"><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a></span></li>
+        <li data-id="a2-gauntlet-8"><span class="step-num">8</span> <span class="step-text">Rats: snipe from above; kill the last rat out of combat at range so it never transforms.</span><span class="flags"><a class="flag flag-cheese" href="#flags">Optional cheese</a></span></li>
+        <li data-id="a2-gauntlet-9"><span class="step-num">9</span> <span class="step-text">Self-same trial: unequip everyone's gear before activating, re-equip after.</span><span class="flags"><a class="flag flag-cheese" href="#flags">Optional cheese</a></span></li>
+        <li data-id="a2-gauntlet-10"><span class="step-num">10</span> <span class="step-text">Send ONE person down the elevator when placing the orbs.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a2-gauntlet-11"><span class="step-num">11</span> <span class="step-text">DO NOT enter the Shadowfell until you've restocked everything and finished Acts I–II business.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a2-shadowfell" data-section="a2-shadowfell">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a2-shadowfell-body" aria-expanded="true" aria-controls="a2-shadowfell-body" aria-label="Show or hide Shadowfell → Moonrise → Colony"></button>
+      <h3><a class="anchor" href="#a2-shadowfell" title="Link to this section">Shadowfell → Moonrise → Colony</a> <span class="total" data-total="a2-shadowfell"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a2-shadowfell-body">
+      <ol class="checklist">
+        <li data-id="a2-shadowfell-1"><span class="step-num">1</span> <span class="step-text">Let Shadowheart choose. You do not want the Nightsong fight.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a2-shadowfell-2"><span class="step-num">2</span> <span class="step-text">Return to Moonrise with Jaheira; clear the prison (rest by walking out past the waypoint).</span></li>
+        <li data-id="a2-shadowfell-3"><span class="step-num">3</span> <span class="step-text">Ketheric at the top: use the dialogue option from his wife's diary.</span></li>
+        <li data-id="a2-shadowfell-4"><span class="step-num">4</span> <span class="step-text">Mind Flayer Colony: the restoration pod is ONE use in Honour Mode — save it. Kill every devourer, rescue Mizora and Zevlor, kill the Mistress of Souls, do the mind puzzle, purge the waking mind for the permanent buff, take the Resonance Stone.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a2-chosen" data-section="a2-chosen">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a2-chosen-body" aria-expanded="true" aria-controls="a2-chosen-body" aria-label="Show or hide The Chosen — Ketheric &amp; Myrkul"></button>
+      <h3><a class="anchor" href="#a2-chosen" title="Link to this section">The Chosen — Ketheric &amp; Myrkul</a> <span class="total" data-total="a2-chosen"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a2-chosen-body">
+      <ol class="checklist">
+        <li data-id="a2-chosen-1"><span class="step-num">1</span> <span class="step-text">Never tell Gale to detonate.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a2-chosen-2"><span class="step-num">2</span> <span class="step-text">Ketheric &amp; Myrkul: the biggest run-killer. Use everything: elixirs, scrolls, arrows (<a href="#enc-ketheric">encounter card</a>).</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a><a class="flag flag-boss" href="#tips-legendary">Boss</a></span></li>
+        <li data-id="a2-chosen-3"><span class="step-num">3</span> <span class="step-text">Stealth Astarion with the Eversight Ring into a Darkness cloud on a platform; kill the mind flayer first — nothing else can reach him. Other characters wait in stealth at the back.</span><span class="flags"><a class="flag flag-cheese" href="#flags">Optional cheese</a></span></li>
+        <li data-id="a2-chosen-4"><span class="step-num">4</span> <span class="step-text">Free the Nightsong before Ketheric falls (a stealthed, invisible Scratch works).</span></li>
+        <li data-id="a2-chosen-5"><span class="step-num">5</span> <span class="step-text">Myrkul phase: spread out in different directions so only one character is hit at a time; stack blindness / Arrows of Darkness on him; kill necromites and involucres before they heal him.</span></li>
+        <li data-id="a2-chosen-6"><span class="step-num">6</span> <span class="step-text">Loot the Netherstone. Talk to the dream visitor and your allies; long rest; finish anything left before Baldur's Gate.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a2-encounters">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a2-encounters-body" aria-expanded="true" aria-controls="a2-encounters-body" aria-label="Show or hide Act II encounter cards"></button>
+      <h3><a class="anchor" href="#a2-encounters" title="Link to this section">Act II encounter cards</a></h3>
+    </div>
+    <div class="section-body collapse show" id="a2-encounters-body">
+      <p class="section-sub">Threat, how to set up before the fight, what to do on turn one, and how to get out if it goes wrong.</p>
+      <div class="row row-cols-1 row-cols-lg-2 g-3">
+        <div class="col"><div class="card enc-card h-100" id="enc-karniss">
+          <div class="card-header"><a class="anchor" href="#enc-karniss">Kar'niss</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>High — Fanatic Retaliation punishes whoever kills a fanatic.</dd><dt>Set-up</dt><dd>Use the Spider Lyre to make him come to you alone.</dd><dt>Execute</dt><dd>Focus Kar'niss; if fanatics are present, let non-casters kill them (silence hurts casters most).</dd><dt>Bail-out</dt><dd>Flee toward Last Light.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-mound">
+          <div class="card-header"><a class="anchor" href="#enc-mound">Shadow-Cursed Shambling Mound</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Run-killer — it swallows and roots.</dd><dt>Set-up</dt><dd>At least one character immune to/away from roots. Arrows of Roaring Thunder.</dd><dt>Execute</dt><dd>Burst from range, retreat, rest, return. Keep away from chasms.</dd><dt>Bail-out</dt><dd>Leave and come back — it does not have to die in one go.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-balthazar">
+          <div class="card-header"><a class="anchor" href="#enc-balthazar">Balthazar (Gauntlet)</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>High — raises corpses.</dd><dt>Set-up</dt><dd>Buy his speed potion; hide bodies in camp/chests; bait guards out with Darkness.</dd><dt>Execute</dt><dd>Hard-focus him turn one.</dd><dt>Bail-out</dt><dd>Easier here than in the Shadowfell — commit.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-ketheric">
+          <div class="card-header"><a class="anchor" href="#enc-ketheric">Ketheric &amp; Apostle of Myrkul</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Highest in the game.</dd><dt>Set-up</dt><dd>Diary dialogue, Eversight Ring, Darkness platform, full elixirs, Nightsong freed early.</dd><dt>Execute</dt><dd>Phase 1: kill the mind flayer, then thin the adds. Phase 2: spread out, debuff Myrkul's attacks, kill healers.</dd><dt>Bail-out</dt><dd>Have a Misty Step / Dimension Door escape ready for one character.</dd></dl></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+  <a class="gear-checkpoint" href="#gear-a2-end"><span class="gc-icon" aria-hidden="true">&#9876;</span> <span><strong>Gear checkpoint:</strong> Act II end — after Ketheric (~lvl 9–10)</span> <span class="gc-go">Open gear table &rarr;</span></a>  </div>
+  <div class="act-head" id="act3">
+    <h2><span class="act-kicker">Walkthrough</span> Act III <span class="total" data-total="act3"></span></h2>
+    <p>Act III has fewer forced fights; most danger is in Orin and the finale. Reach level 12 before Orin. This route skips most optional dungeons — add House of Hope or Wyrmway only if you want their gear (marked optional in the gear tables).</p>
+    <p class="text-body-secondary small">Steps are in order. Do them top to bottom; <a href="#flags">flags</a> mark the moments that can end a run.</p>
+  </div>
+  <div data-section="act3" class="act-body">
+  <section class="cl-section" id="a3-lookout" data-section="a3-lookout">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a3-lookout-body" aria-expanded="true" aria-controls="a3-lookout-body" aria-label="Show or hide Wyrm&#x27;s Lookout"></button>
+      <h3><a class="anchor" href="#a3-lookout" title="Link to this section">Wyrm's Lookout</a> <span class="total" data-total="a3-lookout"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a3-lookout-body">
+      <ol class="checklist">
+        <li data-id="a3-lookout-1"><span class="step-num">1</span> <span class="step-text">Clear companion dialogue, rest. Misty Step to the portal; snipe the devourers from the roof.</span></li>
+        <li data-id="a3-lookout-2"><span class="step-num">2</span> <span class="step-text">Side with the Emperor and defeat the honour guard (<a href="#enc-emperor">encounter card</a>). If the Emperor dies, the run ends.</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a></span></li>
+        <li data-id="a3-lookout-3"><span class="step-num">3</span> <span class="step-text">Use the astral tadpole; convince everyone else to use one too (respec/swap anyone who refuses).</span><span class="flags"><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a></span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a3-rivington" data-section="a3-rivington">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a3-rivington-body" aria-expanded="true" aria-controls="a3-rivington-body" aria-label="Show or hide Rivington"></button>
+      <h3><a class="anchor" href="#a3-rivington" title="Link to this section">Rivington</a> <span class="total" data-total="a3-rivington"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a3-rivington-body">
+      <ol class="checklist">
+        <li data-id="a3-rivington-1"><span class="step-num">1</span> <span class="step-text">Talk to Yenna (be nice). Agree to help the Strange Ox — take the apple.</span></li>
+        <li data-id="a3-rivington-2"><span class="step-num">2</span> <span class="step-text">Kill the mind flayer at the windmill. Side with the refugees at Arfur's mansion; sneak into the basement (Misty Step/fly over traps) for the evidence.</span></li>
+        <li data-id="a3-rivington-3"><span class="step-num">3</span> <span class="step-text">Expose Nestor's trap; get into the circus; have a statue made; buy the Bonespike Garb.</span></li>
+        <li data-id="a3-rivington-4"><span class="step-num">4</span> <span class="step-text">Temple: talk to Yannis; speak with dead on Father Lorgan; tunnels — kill the Bhaalists, take the key and evidence.</span></li>
+        <li data-id="a3-rivington-5"><span class="step-num">5</span> <span class="step-text">Ship fight: side with the Guild against the Stone Lord thugs. Don't send everyone over the steam traps. Loot the tadpole.</span></li>
+        <li data-id="a3-rivington-6"><span class="step-num">6</span> <span class="step-text">Cross the bridge (gnomes, or fly/Misty Step around).</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a3-crossing" data-section="a3-crossing">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a3-crossing-body" aria-expanded="true" aria-controls="a3-crossing-body" aria-label="Show or hide Wyrm&#x27;s Crossing"></button>
+      <h3><a class="anchor" href="#a3-crossing" title="Link to this section">Wyrm's Crossing</a> <span class="total" data-total="a3-crossing"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a3-crossing-body">
+      <ol class="checklist">
+        <li data-id="a3-crossing-1"><span class="step-num">1</span> <span class="step-text">Find the Stern librarian body and murder list (Flophouse attic). Hand in to Mamzel and Valeria at Sharess' Caress.</span></li>
+        <li data-id="a3-crossing-2"><span class="step-num">2</span> <span class="step-text">Confront Arfur (no deal). Refuse Raphael's deal via Voss. Harper warehouse fight; speak to Jaheira.</span></li>
+        <li data-id="a3-crossing-3"><span class="step-num">3</span> <span class="step-text">Gortash's audience: only 'consider' his deal for now (accepting breaks your oath).</span><span class="flags"><a class="flag flag-oath" href="#flags">Oath</a></span></li>
+        <li data-id="a3-crossing-4"><span class="step-num">4</span> <span class="step-text">Talk to Mizora with Wyll; let Ulder Ravengard die when she asks.</span><span class="flags"><a class="flag flag-swap" href="#swaps">Swap</a></span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a3-lowercity" data-section="a3-lowercity">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a3-lowercity-body" aria-expanded="true" aria-controls="a3-lowercity-body" aria-label="Show or hide Lower City"></button>
+      <h3><a class="anchor" href="#a3-lowercity" title="Link to this section">Lower City</a> <span class="total" data-total="a3-lowercity"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a3-lowercity-body">
+      <ol class="checklist">
+        <li data-id="a3-lowercity-1"><span class="step-num">1</span> <span class="step-text">Take Lora's quest. Donate to the Tabernacle statues (respec to level 1 first — <a href="#tips-gold">how</a>; re-level with <a href="#build-tav">Tav's build</a>).</span></li>
+        <li data-id="a3-lowercity-2"><span class="step-num">2</span> <span class="step-text">Dammon: buy Legacy of the Masters. Sorcerous Sundries: pass the deception check with Aradin; buy the Ring of Regeneration.</span></li>
+        <li data-id="a3-lowercity-3"><span class="step-num">3</span> <span class="step-text">Solve the Open Hand murders; lie to Sarevok at the tribunal to become an Unholy Assassin; kill Valeria. Buy the Bhaalist Armour.</span><span class="flags"><a class="flag flag-oath" href="#flags">Oath</a></span></li>
+        <li data-id="a3-lowercity-4"><span class="step-num">4</span> <span class="step-text">Restore oath. Undercity Ruins: buy the Bonespike helmet from Bareki; do the grease/fire fight. Exhaust Arabella's dialogue.</span></li>
+        <li data-id="a3-lowercity-5"><span class="step-num">5</span> <span class="step-text">Collect tadpoles: Sundries table, Araj's basement, the Lodge, the foundry boat, Flymm Cobblers, Avery (rigged toys).</span></li>
+        <li data-id="a3-lowercity-6"><span class="step-num">6</span> <span class="step-text">Save Volo from the mob (send smokepowder to camp first). Park Bhaalist fight. Loot the Sorcerous Vault except the Annals of Karsus (hidden axe behind the illusion door). Read all legendary books; remove curse on the Tharchiate Codex.</span></li>
+        <li data-id="a3-lowercity-7"><span class="step-num">7</span> <span class="step-text">Optional: House of Hope heist for Gale's Staff of Spellpower and Karlach's Gauntlets of Hill Giant Strength. Grab and leave — Raphael is a serious fight.</span></li>
+      </ol>
+    </div>
+  </section>
+  <a class="gear-checkpoint" href="#gear-a3-mid"><span class="gc-icon" aria-hidden="true">&#9876;</span> <span><strong>Gear checkpoint:</strong> Act III mid-act — after Lower City shopping</span> <span class="gc-go">Open gear table &rarr;</span></a>
+  <section class="cl-section" id="a3-allies" data-section="a3-allies">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a3-allies-body" aria-expanded="true" aria-controls="a3-allies-body" aria-label="Show or hide Gather your allies"></button>
+      <h3><a class="anchor" href="#a3-allies" title="Link to this section">Gather your allies</a> <span class="total" data-total="a3-allies"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a3-allies-body">
+      <ol class="checklist">
+        <li data-id="a3-allies-1"><span class="step-num">1</span> <span class="step-text">Guild: bring Jaheira; talk to Nine-Fingers, Thistlebolg; bank pass from Meadhoney; fight the Bhaalists; help Glitterbeard; try vault 6.</span><span class="flags"><a class="flag flag-swap" href="#swaps">Swap</a></span></li>
+        <li data-id="a3-allies-2"><span class="step-num">2</span> <span class="step-text">Minsc: finish the sewer fights and water puzzle. KNOCK MINSC OUT, kill the rest; convince the Emperor to help him.</span><span class="flags"><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a></span></li>
+        <li data-id="a3-allies-3"><span class="step-num">3</span> <span class="step-text">Side with the Guild against the Zhents; return Glitterbeard's gold.</span></li>
+        <li data-id="a3-allies-4"><span class="step-num">4</span> <span class="step-text">Ethel's help: agree with Grisly to kill Lora (behind closed doors), then keep the peace.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a3-orin" data-section="a3-orin">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a3-orin-body" aria-expanded="true" aria-controls="a3-orin-body" aria-label="Show or hide Orin the Red"></button>
+      <h3><a class="anchor" href="#a3-orin" title="Link to this section">Orin the Red</a> <span class="total" data-total="a3-orin"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a3-orin-body">
+      <ol class="checklist">
+        <li data-id="a3-orin-1"><span class="step-num">1</span> <span class="step-text">Final vendor sweep; be level 12. Send ONE person back to the Undercity waypoint; everyone else stays topside.</span></li>
+        <li data-id="a3-orin-2"><span class="step-num">2</span> <span class="step-text">Power Word Kill Bhaalists: invisibility potion + spam Dash and run the whole way to the waypoint before Orin; teleport everyone else there.</span><span class="flags"><a class="flag flag-cheese" href="#flags">Optional cheese</a></span></li>
+        <li data-id="a3-orin-3"><span class="step-num">3</span> <span class="step-text">Save the victim (Inspiration).</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a></span></li>
+        <li data-id="a3-orin-4"><span class="step-num">4</span> <span class="step-text">Kill Orin in round one: strip Unstoppable with Magic Missile / Scorching Ray scrolls and multi-hits, then nuke. Speed potions on everyone. Spread off the bridge (<a href="#enc-orin">encounter card</a>).</span><span class="flags"><a class="flag flag-boss" href="#tips-legendary">Boss</a></span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a3-finale" data-section="a3-finale">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a3-finale-body" aria-expanded="true" aria-controls="a3-finale-body" aria-label="Show or hide Gortash &amp; the Finale"></button>
+      <h3><a class="anchor" href="#a3-finale" title="Link to this section">Gortash &amp; the Finale</a> <span class="total" data-total="a3-finale"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="a3-finale-body">
+      <ol class="checklist">
+        <li data-id="a3-finale-1"><span class="step-num">1</span> <span class="step-text">Gortash: agree to everything EXCEPT handing over the stones — say you'll share them.</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a></span></li>
+        <li data-id="a3-finale-2"><span class="step-num">2</span> <span class="step-text">Best gear (<a href="#gear-a3-end">end-of-act table</a>), spend every coin, take the skiff. Gale must be in the party.</span><span class="flags"><a class="flag flag-swap" href="#swaps">Swap</a></span></li>
+        <li data-id="a3-finale-3"><span class="step-num">3</span> <span class="step-text">At the Brain: be careful — 'submit' ends the run. No Inspiration needed here.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a3-finale-4"><span class="step-num">4</span> <span class="step-text">When the Emperor pulls you away: don't attack him; 'talk it over' with the party; support Gale's plan.</span><span class="flags"><a class="flag flag-rk" href="#flags">Run killer</a></span></li>
+        <li data-id="a3-finale-5"><span class="step-num">5</span> <span class="step-text">Persuade Voss to fight with you (otherwise kill him). Rally allies; buy out vendors; recruit the city watch.</span><span class="flags"><a class="flag flag-insp" href="#tips-inspiration">Inspiration</a></span></li>
+        <li data-id="a3-finale-6"><span class="step-num">6</span> <span class="step-text">Final fight (<a href="#enc-final">encounter card</a>): use everything except Misty Step charges; call all allies. Then race up the left staircase to the brain stem (pick the door, Dash, fly).</span></li>
+        <li data-id="a3-finale-7"><span class="step-num">7</span> <span class="step-text">At the brain stem pick the most supportive Gale options. Credits.</span><span class="flags"><a class="flag flag-prk" href="#flags">Potential run killer</a></span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="a3-encounters">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#a3-encounters-body" aria-expanded="true" aria-controls="a3-encounters-body" aria-label="Show or hide Act III encounter cards"></button>
+      <h3><a class="anchor" href="#a3-encounters" title="Link to this section">Act III encounter cards</a></h3>
+    </div>
+    <div class="section-body collapse show" id="a3-encounters-body">
+      <p class="section-sub">Threat, how to set up before the fight, what to do on turn one, and how to get out if it goes wrong.</p>
+      <div class="row row-cols-1 row-cols-lg-2 g-3">
+        <div class="col"><div class="card enc-card h-100" id="enc-emperor">
+          <div class="card-header"><a class="anchor" href="#enc-emperor">Emperor vs Honour Guard</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Run-ending if the Emperor dies.</dd><dt>Set-up</dt><dd>Snipe devourers from the roof first; buff before talking.</dd><dt>Execute</dt><dd>Protect the Emperor; kill the honour guard fast.</dd><dt>Bail-out</dt><dd>Heal the Emperor before your own damage turns.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-orin">
+          <div class="card-header"><a class="anchor" href="#enc-orin">Orin the Red</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>Very high — she gets Unstoppable and knocks people off the bridge.</dd><dt>Set-up</dt><dd>Level 12. Stack initiative gear; bring every Magic Missile / Scorching Ray scroll; Gale upcasts Magic Missile.</dd><dt>Execute</dt><dd>Strip Unstoppable with many small hits, then burst. Speed potions turn one. Spread out off the starting bridge.</dd><dt>Bail-out</dt><dd>If she survives turn one, protect whoever has the most damage left.</dd></dl></div>
+        </div></div>
+        <div class="col"><div class="card enc-card h-100" id="enc-final">
+          <div class="card-header"><a class="anchor" href="#enc-final">Final assault</a></div>
+          <div class="card-body"><dl class="enc"><dt>Threat</dt><dd>High.</dd><dt>Set-up</dt><dd>Short rest, elixirs, scrolls, ally calls ready.</dd><dt>Execute</dt><dd>Clear the yard; keep Misty Step for the race.</dd><dt>Bail-out</dt><dd>Use angelic slumber / reprieve potions between waves.</dd></dl></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+  <a class="gear-checkpoint" href="#gear-a3-end"><span class="gc-icon" aria-hidden="true">&#9876;</span> <span><strong>Gear checkpoint:</strong> Act III end — before Orin &amp; the finale (lvl 12)</span> <span class="gc-go">Open gear table &rarr;</span></a>  </div>
+</div>
+
+<div class="tab-pane" id="tabParty" role="tabpanel" data-section="tabParty">
+  <h2 class="tab-title">Party &amp; Builds <span class="total" data-total="tabParty"></span></h2>
+  <nav class="toc-box" aria-label="Party contents"><ul class="toc toc-inline"><li><a href="#party-overview">Party composition</a></li><li><a href="#party-why">Why this party</a></li><li><a href="#build-tav">Tav's build</a> <span class="total" data-total="build-tav"></span></li><li><a href="#build-karlach">Karlach's build</a> <span class="total" data-total="build-karlach"></span></li><li><a href="#build-astarion">Astarion's build</a> <span class="total" data-total="build-astarion"></span></li><li><a href="#build-gale">Gale's build</a> <span class="total" data-total="build-gale"></span></li><li><a href="#swaps">Companion swaps</a> <span class="total" data-total="swaps"></span></li></ul></nav>
+  <section class="cl-section" id="party-overview">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#party-overview-body" aria-expanded="true" aria-controls="party-overview-body" aria-label="Show or hide Party composition"></button>
+      <h3><a class="anchor" href="#party-overview" title="Link to this section">Party composition</a></h3>
+    </div>
+    <div class="section-body collapse show" id="party-overview-body">
+      <p>Four characters, four different main stats, four different armour lanes — and each one can win a fight on their own.</p>
+      <div class="table-responsive"><table class="table table-sm party-table">
+        <thead><tr><th></th><th>Build</th><th>Role</th><th>Main stat</th><th>Armour lane</th><th>Why they carry</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#build-tav"><strong>Tav (you)</strong></a></td><td>Swords Bard 10 / Vengeance Paladin 2</td><td>Face, control, healer, melee smiter</td><td>CHA (spells, checks) + DEX (finesse weapon)</td><td>Heavy</td><td>Expertise in Persuasion/Deception skips whole boss fights; Hold Person + Divine Smite crits end fights; Healing Word picks people up.</td></tr>
+          <tr><td><a href="#build-karlach"><strong>Karlach</strong></a></td><td>Wildheart Barbarian 12 (Bear Heart)</td><td>Unkillable frontliner</td><td>STR</td><td>Medium (Adamantine Scale)</td><td>Bear Heart rage resists almost every damage type, Relentless Rage keeps her up at 0 HP, Adamantine armour blocks crits.</td></tr>
+          <tr><td><a href="#build-astarion"><strong>Astarion</strong></a></td><td>Gloom Stalker 5 / Assassin Rogue 5 / Fighter 2</td><td>Opener, sniper, traps &amp; locks</td><td>DEX (bows only)</td><td>Light</td><td>Dread Ambusher + Assassinate auto-crits surprised targets: the scariest enemy is usually dead before it acts.</td></tr>
+          <tr><td><a href="#build-gale"><strong>Gale</strong></a></td><td>Evocation Wizard 12</td><td>Artillery, Haste, Counterspell</td><td>INT</td><td>Robes + shield</td><td>Sculpt Spells lets him drop Fireball on top of Karlach with no friendly fire; upcast Magic Missile is the Orin answer.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+  <section class="cl-section" id="party-why">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#party-why-body" aria-expanded="true" aria-controls="party-why-body" aria-label="Show or hide Why this party"></button>
+      <h3><a class="anchor" href="#party-why" title="Link to this section">Why this party</a></h3>
+    </div>
+    <div class="section-body collapse show" id="party-why-body">
+      <p>Two goals: little competition for gear, and every member strong enough to carry. Here's how the four builds answer that:</p>
+      <div class="table-responsive"><table class="table table-sm ">
+        <thead><tr><th>Gear pool</th><th>Who owns it</th><th>Why nobody else wants it</th></tr></thead>
+        <tbody>
+          <tr><td>Strength items (Gauntlets of Hill Giant Strength, Elixirs of Hill Giant Strength)</td><td>Karlach</td><td>Only STR character. Astarion's Titanstring Bow uses a STR stick (club) or an elixir, not gloves.</td></tr>
+          <tr><td>Ranged-attack items (Gloves of Archery, bows, Marksmanship gear)</td><td>Astarion</td><td>Only archer. Tav fights in melee.</td></tr>
+          <tr><td>Melee DEX / Charisma items (Gloves of Dexterity, Helmet of Arcane Acuity, Band of the Mystic Scoundrel)</td><td>Tav</td><td>Gale is INT; Astarion's ranged kit has better glove options.</td></tr>
+          <tr><td>Spell-power items (staves, Weave set, Daredevil Gloves, Elemental Augmentation)</td><td>Gale</td><td>Tav's spells are control/heal; he doesn't need +spell attack.</td></tr>
+          <tr><td>Heavy armour</td><td>Tav (Paladin proficiency)</td><td>No one else is proficient.</td></tr>
+          <tr><td>Medium armour</td><td>Karlach</td><td>Astarion stays light/medium-by-choice; Gale uses robes.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout callout-gold">
+        <strong>Why the Paladin dip fixes the level-2 problem</strong>
+        <p>A pure Bard starts with light armour and a d8 hit die — fragile in exactly the fights that keep ending your runs. Starting Tav as a Paladin gives heavy armour (AC 16+ from the first trader set), Lay on Hands, and Divine Smite at level 2. You switch to Bard at level 3 and lose nothing important. Your Bard power — Healing Word, Hold Person, Hypnotic Pattern, Expertise talk-checks — arrives on schedule.</p>
+      </div>
+      <div class="callout callout-purple">
+        <strong>Alternatives if a build doesn't click</strong>
+        <p>Karlach → Path of Giants Barbarian (Patch 8) is a strong, fun swap and uses the same gear. Gale → Abjuration Wizard if you want more defence (Arcane Ward) at the cost of damage. Astarion → Gloom Stalker / Thief (more bonus actions) if you prefer sustained damage over the opening burst.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cl-section" id="build-tav" data-section="build-tav">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#build-tav-body" aria-expanded="true" aria-controls="build-tav-body" aria-label="Show or hide Tav — Swords Bard (Paladin 2 dip)"></button>
+      <h3><a class="anchor" href="#build-tav" title="Link to this section">Tav — Swords Bard (Paladin 2 dip)</a> <span class="total" data-total="build-tav"></span></h3>
+      <button type="button" class="btn btn-sm btn-outline-secondary reset-btn" data-reset-section="build-tav">Clear level-ups</button>
+    </div>
+    <div class="section-body collapse show" id="build-tav-body">
+      <p>Starting as a Paladin gives you heavy armour, Lay on Hands and more HP at levels 1–2 — exactly the levels you keep dying at. From level 3 onward every level goes into Bard. You end as the party's face, healer and controller, with Divine Smite on top of Blade Flourishes.</p>
+      <dl class="kv">
+        <dt>Race</dt><dd>Drow (Seldarine) — Superior Darkvision, Fey Ancestry (advantage vs charm), and the drow race dialogue the route relies on in the Blighted Village and Goblin Camp.</dd>
+        <dt>Background</dt><dd>Noble or Charlatan (CHA skills; Noble also gives Inspiration from varied dialogue).</dd>
+        <dt>Abilities (27 pts)</dt><dd>STR 8 · DEX 17 (15 +2) · CON 14 · INT 8 · WIS 10 · CHA 16 (15 +1)</dd>
+        <dt>Skills</dt><dd>Persuasion, Deception, Athletics + Bard picks (Stealth, Perception, Sleight of Hand)</dd>
+      </dl>
+      <div class="callout callout-purple">
+        <strong>Respec tracker</strong>
+        <p>Respecced at Withers to gift gold to a trader (<a href="#tips-gold">the trick</a>)? Press <strong>Clear level-ups</strong>, then tick each level off again as you rebuild.</p>
+      </div>
+      <h4 class="sub-h">Level-ups</h4>
+      <ol class="checklist levels">
+        <li data-id="lvl-tav-1"><span class="lvl">Lvl 1</span> <span class="lvl-class">Paladin 1</span> <span class="step-text">Oath of Vengeance. Lay on Hands. Wear heavy armour.</span></li>
+        <li data-id="lvl-tav-2"><span class="lvl">Lvl 2</span> <span class="lvl-class">Paladin 2</span> <span class="step-text">Divine Smite. Fighting Style: Defence. Prepare Command + Bless.</span></li>
+        <li data-id="lvl-tav-3"><span class="lvl">Lvl 3</span> <span class="lvl-class">Bard 1</span> <span class="step-text">Cantrips: Vicious Mockery, Minor Illusion. Spells: Healing Word, Dissonant Whisper, Tasha's Hideous Laughter, Longstrider.</span></li>
+        <li data-id="lvl-tav-4"><span class="lvl">Lvl 4</span> <span class="lvl-class">Bard 2</span> <span class="step-text">Song of Rest, Jack of All Trades. Spell: Heroism (or Sleep early).</span></li>
+        <li data-id="lvl-tav-5"><span class="lvl">Lvl 5</span> <span class="lvl-class">Bard 3</span> <span class="step-text">College of Swords: Fighting Style Duelling, Blade Flourishes. Expertise: Persuasion, Deception. Spell: Hold Person.</span></li>
+        <li data-id="lvl-tav-6"><span class="lvl">Lvl 6</span> <span class="lvl-class">Bard 4</span> <span class="step-text">Feat: Alert (+5 initiative, can't be surprised). Spell: Invisibility.</span></li>
+        <li data-id="lvl-tav-7"><span class="lvl">Lvl 7</span> <span class="lvl-class">Bard 5</span> <span class="step-text">Font of Inspiration (refills on short rest). Spell: Hypnotic Pattern.</span></li>
+        <li data-id="lvl-tav-8"><span class="lvl">Lvl 8</span> <span class="lvl-class">Bard 6</span> <span class="step-text">Extra Attack. Spell: Fear.</span></li>
+        <li data-id="lvl-tav-9"><span class="lvl">Lvl 9</span> <span class="lvl-class">Bard 7</span> <span class="step-text">Spell: Greater Invisibility.</span></li>
+        <li data-id="lvl-tav-10"><span class="lvl">Lvl 10</span> <span class="lvl-class">Bard 8</span> <span class="step-text">Feat: Ability Improvement +2 CHA. Spell: Confusion.</span></li>
+        <li data-id="lvl-tav-11"><span class="lvl">Lvl 11</span> <span class="lvl-class">Bard 9</span> <span class="step-text">Spell: Hold Monster.</span></li>
+        <li data-id="lvl-tav-12"><span class="lvl">Lvl 12</span> <span class="lvl-class">Bard 10</span> <span class="step-text">Magical Secrets: Haste + Counterspell. Spell: Mass Cure Wounds.</span></li>
+      </ol>
+      <div class="callout callout-gold">
+        <strong>How to play it</strong>
+        <p>Turn pattern: Bardic Inspiration on Karlach or Astarion → move in → attack with a Blade Flourish → Smite only on crits or to finish. Open hard fights with Hold Person / Hypnotic Pattern before Astarion's ambush. Keep Healing Word ready as a bonus action for anyone at 0 HP.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cl-section" id="build-karlach" data-section="build-karlach">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#build-karlach-body" aria-expanded="true" aria-controls="build-karlach-body" aria-label="Show or hide Karlach — Wildheart Barbarian (Bear Heart)"></button>
+      <h3><a class="anchor" href="#build-karlach" title="Link to this section">Karlach — Wildheart Barbarian (Bear Heart)</a> <span class="total" data-total="build-karlach"></span></h3>
+      <button type="button" class="btn btn-sm btn-outline-secondary reset-btn" data-reset-section="build-karlach">Clear level-ups</button>
+    </div>
+    <div class="section-body collapse show" id="build-karlach-body">
+      <p>Bear Heart rage halves almost every damage type, Relentless Rage brings her back from 0 HP, and Adamantine Scale Mail makes her immune to crits. She stands in front of everyone and draws the hits so the other three can work.</p>
+      <dl class="kv">
+        <dt>Abilities</dt><dd>Keep her defaults (STR 17, DEX 13, CON 15) or respec to STR 17 · DEX 14 · CON 16 · INT 8 · WIS 12 · CHA 8.</dd>
+        <dt>Recruit</dt><dd><a href="#a1-risen">Risen Road</a>, after you meet the Paladins of Tyr. Takes the Everburn Blade from Lae'zel.</dd>
+      </dl>
+      <h4 class="sub-h">Level-ups</h4>
+      <ol class="checklist levels">
+        <li data-id="lvl-karlach-1-2"><span class="lvl">Lvl 1–2</span> <span class="lvl-class">Barbarian</span> <span class="step-text">Rage, Unarmoured Defence, Reckless Attack (set it as a reaction so it only fires when you'd miss).</span></li>
+        <li data-id="lvl-karlach-3"><span class="lvl">Lvl 3</span> <span class="lvl-class">Barbarian 3</span> <span class="step-text">Wildheart → Bestial Heart: Bear (resistance to all damage except psychic while raging).</span></li>
+        <li data-id="lvl-karlach-4"><span class="lvl">Lvl 4</span> <span class="lvl-class">Barbarian 4</span> <span class="step-text">Feat: Great Weapon Master.</span></li>
+        <li data-id="lvl-karlach-5"><span class="lvl">Lvl 5</span> <span class="lvl-class">Barbarian 5</span> <span class="step-text">Extra Attack, Fast Movement.</span></li>
+        <li data-id="lvl-karlach-6-7"><span class="lvl">Lvl 6–7</span> <span class="lvl-class">Barbarian 6–7</span> <span class="step-text">Aspect of the Beast (utility pick), Feral Instinct (advantage on initiative).</span></li>
+        <li data-id="lvl-karlach-8"><span class="lvl">Lvl 8</span> <span class="lvl-class">Barbarian 8</span> <span class="step-text">Feat: +2 STR.</span></li>
+        <li data-id="lvl-karlach-9-11"><span class="lvl">Lvl 9–11</span> <span class="lvl-class">Barbarian 9–11</span> <span class="step-text">Brutal Critical; Relentless Rage at 11.</span></li>
+        <li data-id="lvl-karlach-12"><span class="lvl">Lvl 12</span> <span class="lvl-class">Barbarian 12</span> <span class="step-text">Feat: Tavern Brawler if she throws Nyrulna, otherwise +2 CON.</span></li>
+      </ol>
+      <div class="callout callout-gold">
+        <strong>How to play it</strong>
+        <p>Rage on turn one, every fight. Keep hitting something each turn or rage drops. Shove casters off ledges. Stand where Gale's Fireball can land on her safely.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cl-section" id="build-astarion" data-section="build-astarion">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#build-astarion-body" aria-expanded="true" aria-controls="build-astarion-body" aria-label="Show or hide Astarion — Gloom Stalker Assassin"></button>
+      <h3><a class="anchor" href="#build-astarion" title="Link to this section">Astarion — Gloom Stalker Assassin</a> <span class="total" data-total="build-astarion"></span></h3>
+      <button type="button" class="btn btn-sm btn-outline-secondary reset-btn" data-reset-section="build-astarion">Clear level-ups</button>
+    </div>
+    <div class="section-body collapse show" id="build-astarion-body">
+      <p>The opener. Gloom Stalker's Dread Ambusher gives an extra attack on round one; Assassin makes every hit against a surprised enemy a critical. Respec him at Withers as soon as you reach the <a href="#a1-crypt">Crypt</a> (Act I).</p>
+      <dl class="kv">
+        <dt>Abilities</dt><dd>STR 8 · DEX 17 · CON 15 · INT 8 · WIS 16 · CHA 8</dd>
+        <dt>Skills</dt><dd>Stealth, Sleight of Hand, Perception, Survival, Athletics (Expertise on Stealth + Sleight of Hand)</dd>
+      </dl>
+      <h4 class="sub-h">Level-ups</h4>
+      <ol class="checklist levels">
+        <li data-id="lvl-astarion-1"><span class="lvl">Lvl 1</span> <span class="lvl-class">Ranger 1</span> <span class="step-text">Favoured Enemy: Bounty Hunter. Natural Explorer: Urban Tracker.</span></li>
+        <li data-id="lvl-astarion-2"><span class="lvl">Lvl 2</span> <span class="lvl-class">Ranger 2</span> <span class="step-text">Fighting Style: Archery. Hunter's Mark, Ensnaring Strike.</span></li>
+        <li data-id="lvl-astarion-3"><span class="lvl">Lvl 3</span> <span class="lvl-class">Ranger 3</span> <span class="step-text">Gloom Stalker (Dread Ambusher, Umbral Sight). Spell: Longstrider.</span></li>
+        <li data-id="lvl-astarion-4"><span class="lvl">Lvl 4</span> <span class="lvl-class">Ranger 4</span> <span class="step-text">Feat: Sharpshooter (offset the accuracy penalty with advantage from stealth).</span></li>
+        <li data-id="lvl-astarion-5"><span class="lvl">Lvl 5</span> <span class="lvl-class">Ranger 5</span> <span class="step-text">Extra Attack. Swap Hunter's Mark → Pass Without Trace.</span></li>
+        <li data-id="lvl-astarion-6-7"><span class="lvl">Lvl 6–7</span> <span class="lvl-class">Rogue 1–2</span> <span class="step-text">Sneak Attack, Expertise, Cunning Action.</span></li>
+        <li data-id="lvl-astarion-8"><span class="lvl">Lvl 8</span> <span class="lvl-class">Rogue 3</span> <span class="step-text">Assassin (Assassinate: auto-crit vs surprised).</span></li>
+        <li data-id="lvl-astarion-9"><span class="lvl">Lvl 9</span> <span class="lvl-class">Rogue 4</span> <span class="step-text">Feat: +2 DEX (or Alert).</span></li>
+        <li data-id="lvl-astarion-10-11"><span class="lvl">Lvl 10–11</span> <span class="lvl-class">Fighter 1–2</span> <span class="step-text">Second Wind; Action Surge = two more crits in the ambush round.</span></li>
+        <li data-id="lvl-astarion-12"><span class="lvl">Lvl 12</span> <span class="lvl-class">Rogue 5</span> <span class="step-text">Uncanny Dodge, more Sneak Attack.</span></li>
+      </ol>
+      <div class="callout callout-gold">
+        <strong>How to play it</strong>
+        <p>Start every planned fight from stealth with Astarion. Pick the one enemy that would wreck you (caster, archer, boss) and delete it. Then fall back behind Karlach.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cl-section" id="build-gale" data-section="build-gale">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#build-gale-body" aria-expanded="true" aria-controls="build-gale-body" aria-label="Show or hide Gale — Evocation Wizard"></button>
+      <h3><a class="anchor" href="#build-gale" title="Link to this section">Gale — Evocation Wizard</a> <span class="total" data-total="build-gale"></span></h3>
+      <button type="button" class="btn btn-sm btn-outline-secondary reset-btn" data-reset-section="build-gale">Clear level-ups</button>
+    </div>
+    <div class="section-body collapse show" id="build-gale-body">
+      <p>Sculpt Spells means his area spells skip your party, so he can Fireball into melee. Copy every scroll you find into his spellbook — he becomes the answer to almost any problem.</p>
+      <dl class="kv">
+        <dt>Abilities</dt><dd>Defaults are fine (INT 17). Add +1 INT / +1 DEX at 4 to round out.</dd>
+        <dt>Feats</dt><dd>4: +1 INT +1 DEX · 8: Elemental Adept (Fire) · 12: +2 INT</dd>
+      </dl>
+      <h4 class="sub-h">Level-ups</h4>
+      <ol class="checklist levels">
+        <li data-id="lvl-gale-1-2"><span class="lvl">Lvl 1–2</span> <span class="lvl-class">Wizard</span> <span class="step-text">Evocation at 2. Magic Missile, Shield, Grease, Sleep, Thunderwave.</span></li>
+        <li data-id="lvl-gale-3-4"><span class="lvl">Lvl 3–4</span> <span class="lvl-class">Wizard</span> <span class="step-text">Misty Step, Scorching Ray, Hold Person (scroll).</span></li>
+        <li data-id="lvl-gale-5-6"><span class="lvl">Lvl 5–6</span> <span class="lvl-class">Wizard</span> <span class="step-text">Fireball, Haste (cast on Karlach or Astarion), Counterspell.</span></li>
+        <li data-id="lvl-gale-7-8"><span class="lvl">Lvl 7–8</span> <span class="lvl-class">Wizard</span> <span class="step-text">Wall of Fire, Dimension Door, Ice Storm / Evard's Black Tentacles.</span></li>
+        <li data-id="lvl-gale-9-10"><span class="lvl">Lvl 9–10</span> <span class="lvl-class">Wizard</span> <span class="step-text">Cone of Cold, Hold Monster. Empowered Evocation (INT to damage) at 10.</span></li>
+        <li data-id="lvl-gale-11-12"><span class="lvl">Lvl 11–12</span> <span class="lvl-class">Wizard</span> <span class="step-text">Chain Lightning, Globe of Invulnerability. Scribe Artistry of War (Act III).</span></li>
+      </ol>
+      <div class="callout callout-gold">
+        <strong>How to play it</strong>
+        <p>Haste the best attacker before the fight starts (concentration), then blast. Never cast a second concentration spell on top of Haste — dropping Haste stuns the target for a turn.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cl-section" id="swaps" data-section="swaps">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#swaps-body" aria-expanded="true" aria-controls="swaps-body" aria-label="Show or hide Companion swap checkpoints"></button>
+      <h3><a class="anchor" href="#swaps" title="Link to this section">Companion swap checkpoints</a> <span class="total" data-total="swaps"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="swaps-body">
+      <p>Some story beats need a specific companion present. Everyone in camp levels with you, so swapping is free — just move gear across.</p>
+      <div class="table-responsive"><table class="table table-sm check-table">
+          <thead><tr><th>When</th><th>Bring</th><th>Drop</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr data-id="swap-1"><td><a href="#a1-nautiloid">Prologue → Risen Road (lvl 1–3)</a></td><td>Shadowheart, Lae'zel, Astarion</td><td>—</td><td>Strongest early lineup. Lae'zel carries the Everburn Blade until Karlach joins.</td></tr>
+            <tr data-id="swap-2"><td><a href="#a1-risen">Once Karlach is recruited</a></td><td>Karlach, Gale</td><td>Lae'zel, Shadowheart</td><td>Final party online. Everyone levels in camp, so swapping costs nothing.</td></tr>
+            <tr data-id="swap-3"><td><a href="#a1-underdark">Selûnite Outpost crystal (Underdark)</a></td><td>Shadowheart</td><td>Gale</td><td>Inspiration point.</td></tr>
+            <tr data-id="swap-4"><td><a href="#a1-risen">Waukeen's Rest door (strength check)</a></td><td>Wyll</td><td>anyone</td><td>Route step.</td></tr>
+            <tr data-id="swap-5"><td><a href="#a1-creche">Crèche Y'llek</a></td><td>Lae'zel</td><td>Gale</td><td>Her quest progression; she must be present.</td></tr>
+            <tr data-id="swap-6"><td><a href="#a2-gauntlet">Shar's Gauntlet → Shadowfell</a></td><td>Shadowheart</td><td>Gale or Karlach</td><td>Required for the Nightsong outcome. Never fight the Nightsong.</td></tr>
+            <tr data-id="swap-7"><td><a href="#a3-crossing">Act III: Mizora / Guild hall</a></td><td>Wyll / Jaheira</td><td>anyone</td><td>Route steps; give the guest the departing member's gear.</td></tr>
+            <tr data-id="swap-8"><td><a href="#a3-finale">Finale</a></td><td>Gale</td><td>—</td><td>Gale must be with you for the final sequence.</td></tr>
+          </tbody>
+      </table></div>
+    </div>
+  </section>
+</div>
+
+<div class="tab-pane" id="tabGear" role="tabpanel" data-section="tabGear">
+  <h2 class="tab-title">Gear <span class="total" data-total="tabGear"></span></h2>
+  <nav class="toc-box" aria-label="Gear contents"><ul class="toc toc-inline"><li><a href="#gear-a1-mid">Act I — mid-act</a> <span class="total" data-total="gear-a1-mid"></span></li><li><a href="#gear-a1-end">Act I — end of act</a> <span class="total" data-total="gear-a1-end"></span></li><li><a href="#gear-a2-mid">Act II — mid-act</a> <span class="total" data-total="gear-a2-mid"></span></li><li><a href="#gear-a2-end">Act II — end of act</a> <span class="total" data-total="gear-a2-end"></span></li><li><a href="#gear-a3-mid">Act III — mid-act</a> <span class="total" data-total="gear-a3-mid"></span></li><li><a href="#gear-a3-end">Act III — end of act</a> <span class="total" data-total="gear-a3-end"></span></li></ul></nav>
+  <div class="gear-filter" role="group" aria-label="Show gear for">
+    <span class="me-2 small text-body-secondary">Show:</span>
+    <div class="btn-group btn-group-sm" role="group">
+      <button type="button" class="btn btn-outline-secondary active" data-gear-show="all">Everyone</button>
+      <button type="button" class="btn btn-outline-secondary" data-gear-show="tav">Tav</button>
+      <button type="button" class="btn btn-outline-secondary" data-gear-show="karlach">Karlach</button>
+      <button type="button" class="btn btn-outline-secondary" data-gear-show="astarion">Astarion</button>
+      <button type="button" class="btn btn-outline-secondary" data-gear-show="gale">Gale</button>
+    </div>
+    <span class="ms-2 small text-body-secondary">Tick an item once that character is wearing it.</span>
+  </div>
+  <section class="cl-section" id="gear-a1-mid" data-section="gear-a1-mid">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#gear-a1-mid-body" aria-expanded="true" aria-controls="gear-a1-mid-body" aria-label="Show or hide Act I — mid-act (before the Underdark, ~lvl 3–4)"></button>
+      <h3><a class="anchor" href="#gear-a1-mid" title="Link to this section">Act I — mid-act (before the Underdark, ~lvl 3–4)</a> <span class="total" data-total="gear-a1-mid"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="gear-a1-mid-body">
+      <div class="table-responsive"><table class="table table-sm gear-table">
+          <thead><tr><th class="slot">Slot</th><th class="gc c-tav">Tav (Bard)</th><th class="gc c-karlach">Karlach</th><th class="gc c-astarion">Astarion</th><th class="gc c-gale">Gale</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" class="slot">Weapon</th><td class="gc c-tav" data-id="gear-a1-mid-tav-weapon">Rapier / scimitar (trader)</td><td class="gc c-karlach" data-id="gear-a1-mid-karlach-weapon">Everburn Blade (from Lae'zel)</td><td class="gc c-astarion" data-id="gear-a1-mid-astarion-weapon">Dagger / shortsword</td><td class="gc c-gale" data-id="gear-a1-mid-gale-weapon">Quarterstaff</td></tr>
+            <tr><th scope="row" class="slot">Off-hand / ranged</th><td class="gc c-tav" data-id="gear-a1-mid-tav-off-hand-ranged">Shortbow</td><td class="gc c-karlach" data-id="gear-a1-mid-karlach-off-hand-ranged">Longbow</td><td class="gc c-astarion" data-id="gear-a1-mid-astarion-off-hand-ranged">Best longbow you can buy</td><td class="gc c-gale" data-id="gear-a1-mid-gale-off-hand-ranged">Shield</td></tr>
+            <tr><th scope="row" class="slot">Armour</th><td class="gc c-tav" data-id="gear-a1-mid-tav-armour">Best heavy armour from Grove traders</td><td class="gc c-karlach" data-id="gear-a1-mid-karlach-armour">None (Unarmoured Defence)</td><td class="gc c-astarion" data-id="gear-a1-mid-astarion-armour">Studded leather</td><td class="gc c-gale" data-id="gear-a1-mid-gale-armour">Robe (Mage Armour)</td></tr>
+            <tr><th scope="row" class="slot">Head</th><td class="gc c-tav empty">—</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Cloak</th><td class="gc c-tav empty">—</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Gloves</th><td class="gc c-tav empty">—</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Boots</th><td class="gc c-tav empty">—</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Amulet</th><td class="gc c-tav" data-id="gear-a1-mid-tav-amulet">Amulet of Misty Step</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion empty">—</td><td class="gc c-gale" data-id="gear-a1-mid-gale-amulet">Guidance amulet (swap in for checks)</td></tr>
+            <tr><th scope="row" class="slot">Ring 1</th><td class="gc c-tav empty">—</td><td class="gc c-karlach" data-id="gear-a1-mid-karlach-ring-1">Ring of Protection</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Ring 2</th><td class="gc c-tav empty">—</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+          </tbody>
+      </table></div>
+      <p class="where"><strong>Where to get it:</strong> Everburn Blade: Commander Zhalk (prologue). Amulet of Misty Step: ogre near Priestess Gut's Underdark entrance. Ring of Protection: Mol, 'Steal the Sacred Idol'. Guidance amulet: small spider nest near the Grove.</p>
+      <p class="small"><a href="#a1-risen">&larr; Back to the route at this point</a></p>
+    </div>
+  </section>
+  <section class="cl-section" id="gear-a1-end" data-section="gear-a1-end">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#gear-a1-end-body" aria-expanded="true" aria-controls="gear-a1-end-body" aria-label="Show or hide Act I — end of act (leaving for Act II, ~lvl 6)"></button>
+      <h3><a class="anchor" href="#gear-a1-end" title="Link to this section">Act I — end of act (leaving for Act II, ~lvl 6)</a> <span class="total" data-total="gear-a1-end"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="gear-a1-end-body">
+      <div class="table-responsive"><table class="table table-sm gear-table">
+          <thead><tr><th class="slot">Slot</th><th class="gc c-tav">Tav (Bard)</th><th class="gc c-karlach">Karlach</th><th class="gc c-astarion">Astarion</th><th class="gc c-gale">Gale</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" class="slot">Weapon</th><td class="gc c-tav" data-id="gear-a1-end-tav-weapon">Phalar Aluve</td><td class="gc c-karlach" data-id="gear-a1-end-karlach-weapon">Everburn Blade or Sussur greatsword</td><td class="gc c-astarion" data-id="gear-a1-end-astarion-weapon">Knife of the Undermountain King</td><td class="gc c-gale" data-id="gear-a1-end-gale-weapon">Melf's First Staff (or Staff of Arcane Blessing)</td></tr>
+            <tr><th scope="row" class="slot">Off-hand / ranged</th><td class="gc c-tav" data-id="gear-a1-end-tav-off-hand-ranged">Shortbow / hand crossbow</td><td class="gc c-karlach" data-id="gear-a1-end-karlach-off-hand-ranged">Longbow</td><td class="gc c-astarion" data-id="gear-a1-end-astarion-off-hand-ranged">Titanstring Bow (+ Club of Hill Giant Strength off-hand)</td><td class="gc c-gale" data-id="gear-a1-end-gale-off-hand-ranged">Shield</td></tr>
+            <tr><th scope="row" class="slot">Armour</th><td class="gc c-tav" data-id="gear-a1-end-tav-armour">Adamantine Splint Armour</td><td class="gc c-karlach" data-id="gear-a1-end-karlach-armour">Adamantine Scale Mail</td><td class="gc c-astarion" data-id="gear-a1-end-astarion-armour">The Graceful Cloth</td><td class="gc c-gale" data-id="gear-a1-end-gale-armour">Robe</td></tr>
+            <tr><th scope="row" class="slot">Head</th><td class="gc c-tav" data-id="gear-a1-end-tav-head">Haste Helm</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Cloak</th><td class="gc c-tav empty">—</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Gloves</th><td class="gc c-tav empty">—</td><td class="gc c-karlach" data-id="gear-a1-end-karlach-gloves">Gloves of the Growling Underdog</td><td class="gc c-astarion" data-id="gear-a1-end-astarion-gloves">Gloves of Archery</td><td class="gc c-gale" data-id="gear-a1-end-gale-gloves">Daredevil Gloves</td></tr>
+            <tr><th scope="row" class="slot">Boots</th><td class="gc c-tav" data-id="gear-a1-end-tav-boots">Linebreaker Boots</td><td class="gc c-karlach" data-id="gear-a1-end-karlach-boots">Boots of Genial Striding</td><td class="gc c-astarion" data-id="gear-a1-end-astarion-boots">Disintegrating Night Walkers</td><td class="gc c-gale" data-id="gear-a1-end-gale-boots">Boots of Speed</td></tr>
+            <tr><th scope="row" class="slot">Amulet</th><td class="gc c-tav" data-id="gear-a1-end-tav-amulet">Amulet of Misty Step</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion" data-id="gear-a1-end-astarion-amulet">Broodmother's Revenge</td><td class="gc c-gale" data-id="gear-a1-end-gale-amulet">Necklace of Elemental Augmentation</td></tr>
+            <tr><th scope="row" class="slot">Ring 1</th><td class="gc c-tav" data-id="gear-a1-end-tav-ring-1">Crusher's Ring</td><td class="gc c-karlach" data-id="gear-a1-end-karlach-ring-1">Ring of Protection</td><td class="gc c-astarion" data-id="gear-a1-end-astarion-ring-1">Strange Conduit Ring</td><td class="gc c-gale" data-id="gear-a1-end-gale-ring-1">Mage's Friend</td></tr>
+            <tr><th scope="row" class="slot">Ring 2</th><td class="gc c-tav" data-id="gear-a1-end-tav-ring-2">Caustic Band</td><td class="gc c-karlach" data-id="gear-a1-end-karlach-ring-2">Bracing Band</td><td class="gc c-astarion" data-id="gear-a1-end-astarion-ring-2">Fetish of Callarduran Smoothhands</td><td class="gc c-gale" data-id="gear-a1-end-gale-ring-2">Sunwalker's Gift</td></tr>
+          </tbody>
+      </table></div>
+      <p class="where"><strong>Where to get it:</strong> Adamantine armour: Adamantine Forge (Grymforge) — forge twice. Titanstring Bow: Brem, Zhentarim hideout. Gloves of the Growling Underdog: Dror Ragzlin's area. Disintegrating Night Walkers: True Soul Nere. Boots of Genial Striding, Melf's First Staff, Sunwalker's Gift: Blurg (Myconid Colony). Boots of Speed: reward for curing Thulla. Staff of Arcane Blessing + Mage's Friend: Arcane Tower. Daredevil Gloves: A'jak'nir Jeera (Crèche). Necklace of Elemental Augmentation: Crèche. The Graceful Cloth: Esther (Rosymorn). Phalar Aluve: Underdark.</p>
+      <p class="small"><a href="#a1-encounters">&larr; Back to the route at this point</a></p>
+    </div>
+  </section>
+  <section class="cl-section" id="gear-a2-mid" data-section="gear-a2-mid">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#gear-a2-mid-body" aria-expanded="true" aria-controls="gear-a2-mid-body" aria-label="Show or hide Act II — mid-act (after Last Light shopping)"></button>
+      <h3><a class="anchor" href="#gear-a2-mid" title="Link to this section">Act II — mid-act (after Last Light shopping)</a> <span class="total" data-total="gear-a2-mid"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="gear-a2-mid-body">
+      <div class="table-responsive"><table class="table table-sm gear-table">
+          <thead><tr><th class="slot">Slot</th><th class="gc c-tav">Tav (Bard)</th><th class="gc c-karlach">Karlach</th><th class="gc c-astarion">Astarion</th><th class="gc c-gale">Gale</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" class="slot">Weapon</th><td class="gc c-tav" data-id="gear-a2-mid-tav-weapon">Phalar Aluve</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-weapon">Everburn / Sussur greatsword</td><td class="gc c-astarion" data-id="gear-a2-mid-astarion-weapon">Knife of the Undermountain King</td><td class="gc c-gale" data-id="gear-a2-mid-gale-weapon">Incandescent Staff</td></tr>
+            <tr><th scope="row" class="slot">Off-hand / ranged</th><td class="gc c-tav" data-id="gear-a2-mid-tav-off-hand-ranged">Hand crossbow</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-off-hand-ranged">Longbow</td><td class="gc c-astarion" data-id="gear-a2-mid-astarion-off-hand-ranged">Titanstring Bow (Darkfire Shortbow is the alternative)</td><td class="gc c-gale" data-id="gear-a2-mid-gale-off-hand-ranged">Shield</td></tr>
+            <tr><th scope="row" class="slot">Armour</th><td class="gc c-tav" data-id="gear-a2-mid-tav-armour">Adamantine Splint Armour</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-armour">Adamantine Scale Mail</td><td class="gc c-astarion" data-id="gear-a2-mid-astarion-armour">The Graceful Cloth</td><td class="gc c-gale" data-id="gear-a2-mid-gale-armour">Robe</td></tr>
+            <tr><th scope="row" class="slot">Head</th><td class="gc c-tav" data-id="gear-a2-mid-tav-head">Haste Helm</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-head">Flawed Helldusk Helmet</td><td class="gc c-astarion empty">—</td><td class="gc c-gale" data-id="gear-a2-mid-gale-head">Hat of Fire Acuity</td></tr>
+            <tr><th scope="row" class="slot">Cloak</th><td class="gc c-tav" data-id="gear-a2-mid-tav-cloak">Cloak of Protection</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-cloak">Fleshmelter Cloak</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Gloves</th><td class="gc c-tav" data-id="gear-a2-mid-tav-gloves">Gloves of Dexterity</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-gloves">Flawed Helldusk Gloves</td><td class="gc c-astarion" data-id="gear-a2-mid-astarion-gloves">Gloves of Archery</td><td class="gc c-gale" data-id="gear-a2-mid-gale-gloves">Daredevil Gloves</td></tr>
+            <tr><th scope="row" class="slot">Boots</th><td class="gc c-tav" data-id="gear-a2-mid-tav-boots">Linebreaker Boots</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-boots">Boots of Genial Striding</td><td class="gc c-astarion" data-id="gear-a2-mid-astarion-boots">Disintegrating Night Walkers</td><td class="gc c-gale" data-id="gear-a2-mid-gale-boots">Boots of Speed</td></tr>
+            <tr><th scope="row" class="slot">Amulet</th><td class="gc c-tav" data-id="gear-a2-mid-tav-amulet">Amulet of Misty Step</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion" data-id="gear-a2-mid-astarion-amulet">Broodmother's Revenge</td><td class="gc c-gale" data-id="gear-a2-mid-gale-amulet">Necklace of Elemental Augmentation</td></tr>
+            <tr><th scope="row" class="slot">Ring 1</th><td class="gc c-tav" data-id="gear-a2-mid-tav-ring-1">Risky Ring</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-ring-1">Ring of Protection</td><td class="gc c-astarion" data-id="gear-a2-mid-astarion-ring-1">Strange Conduit Ring</td><td class="gc c-gale" data-id="gear-a2-mid-gale-ring-1">Mage's Friend</td></tr>
+            <tr><th scope="row" class="slot">Ring 2</th><td class="gc c-tav" data-id="gear-a2-mid-tav-ring-2">Crusher's Ring</td><td class="gc c-karlach" data-id="gear-a2-mid-karlach-ring-2">Bracing Band</td><td class="gc c-astarion" data-id="gear-a2-mid-astarion-ring-2">Fetish of Callarduran Smoothhands</td><td class="gc c-gale" data-id="gear-a2-mid-gale-ring-2">Sunwalker's Gift</td></tr>
+          </tbody>
+      </table></div>
+      <p class="where"><strong>Where to get it:</strong> Cloak of Protection + Incandescent Staff: Quartermaster Talli. Darkfire Shortbow + Flawed Helldusk pieces: Dammon (Infernal Iron). Hat of Fire Acuity: the Strange Ox. Fleshmelter Cloak: House of Healing morgue.</p>
+      <p class="small"><a href="#a2-moonrise">&larr; Back to the route at this point</a></p>
+    </div>
+  </section>
+  <section class="cl-section" id="gear-a2-end" data-section="gear-a2-end">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#gear-a2-end-body" aria-expanded="true" aria-controls="gear-a2-end-body" aria-label="Show or hide Act II — end of act (after Ketheric, ~lvl 9–10)"></button>
+      <h3><a class="anchor" href="#gear-a2-end" title="Link to this section">Act II — end of act (after Ketheric, ~lvl 9–10)</a> <span class="total" data-total="gear-a2-end"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="gear-a2-end-body">
+      <div class="table-responsive"><table class="table table-sm gear-table">
+          <thead><tr><th class="slot">Slot</th><th class="gc c-tav">Tav (Bard)</th><th class="gc c-karlach">Karlach</th><th class="gc c-astarion">Astarion</th><th class="gc c-gale">Gale</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" class="slot">Weapon</th><td class="gc c-tav" data-id="gear-a2-end-tav-weapon">Phalar Aluve</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-weapon">Halberd of Vigilance</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-weapon">Rhapsody</td><td class="gc c-gale" data-id="gear-a2-end-gale-weapon">Incandescent Staff</td></tr>
+            <tr><th scope="row" class="slot">Off-hand / ranged</th><td class="gc c-tav" data-id="gear-a2-end-tav-off-hand-ranged">Hand crossbow</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-off-hand-ranged">Longbow</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-off-hand-ranged">Titanstring Bow</td><td class="gc c-gale" data-id="gear-a2-end-gale-off-hand-ranged">Ketheric's Shield</td></tr>
+            <tr><th scope="row" class="slot">Armour</th><td class="gc c-tav" data-id="gear-a2-end-tav-armour">Adamantine Splint Armour</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-armour">Adamantine Scale Mail</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-armour">Dark Justiciar Half-Plate</td><td class="gc c-gale" data-id="gear-a2-end-gale-armour">Robe</td></tr>
+            <tr><th scope="row" class="slot">Head</th><td class="gc c-tav" data-id="gear-a2-end-tav-head">Helmet of Arcane Acuity</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-head">Flawed Helldusk Helmet</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-head">Marksmanship Hat</td><td class="gc c-gale" data-id="gear-a2-end-gale-head">Hat of Fire Acuity</td></tr>
+            <tr><th scope="row" class="slot">Cloak</th><td class="gc c-tav" data-id="gear-a2-end-tav-cloak">Cloak of Protection</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-cloak">Fleshmelter Cloak</td><td class="gc c-astarion empty">—</td><td class="gc c-gale empty">—</td></tr>
+            <tr><th scope="row" class="slot">Gloves</th><td class="gc c-tav" data-id="gear-a2-end-tav-gloves">Gloves of Dexterity</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-gloves">Flawed Helldusk Gloves</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-gloves">Dark Justiciar Gauntlets</td><td class="gc c-gale" data-id="gear-a2-end-gale-gloves">Daredevil Gloves</td></tr>
+            <tr><th scope="row" class="slot">Boots</th><td class="gc c-tav" data-id="gear-a2-end-tav-boots">Evasive Shoes</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-boots">Boots of Genial Striding</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-boots">Disintegrating Night Walkers</td><td class="gc c-gale" data-id="gear-a2-end-gale-boots">Boots of Speed</td></tr>
+            <tr><th scope="row" class="slot">Amulet</th><td class="gc c-tav" data-id="gear-a2-end-tav-amulet">Surgeon's Subjugation Amulet</td><td class="gc c-karlach empty">—</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-amulet">Broodmother's Revenge</td><td class="gc c-gale" data-id="gear-a2-end-gale-amulet">Necklace of Elemental Augmentation</td></tr>
+            <tr><th scope="row" class="slot">Ring 1</th><td class="gc c-tav" data-id="gear-a2-end-tav-ring-1">Risky Ring</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-ring-1">Ring of Protection</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-ring-1">Strange Conduit Ring</td><td class="gc c-gale" data-id="gear-a2-end-gale-ring-1">Mage's Friend</td></tr>
+            <tr><th scope="row" class="slot">Ring 2</th><td class="gc c-tav" data-id="gear-a2-end-tav-ring-2">Killer's Sweetheart</td><td class="gc c-karlach" data-id="gear-a2-end-karlach-ring-2">Bracing Band</td><td class="gc c-astarion" data-id="gear-a2-end-astarion-ring-2">Shadow-Cloaked Ring</td><td class="gc c-gale" data-id="gear-a2-end-gale-ring-2">Sunwalker's Gift</td></tr>
+          </tbody>
+      </table></div>
+      <p class="where"><strong>Where to get it:</strong> Halberd of Vigilance: Lann Tarv, Moonrise Towers. Ketheric's Shield: Ketheric Thorm. Dark Justiciar pieces: Gauntlet of Shar.</p>
+      <p class="small"><a href="#a2-encounters">&larr; Back to the route at this point</a></p>
+    </div>
+  </section>
+  <section class="cl-section" id="gear-a3-mid" data-section="gear-a3-mid">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#gear-a3-mid-body" aria-expanded="true" aria-controls="gear-a3-mid-body" aria-label="Show or hide Act III — mid-act (after Lower City shopping)"></button>
+      <h3><a class="anchor" href="#gear-a3-mid" title="Link to this section">Act III — mid-act (after Lower City shopping)</a> <span class="total" data-total="gear-a3-mid"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="gear-a3-mid-body">
+      <div class="table-responsive"><table class="table table-sm gear-table">
+          <thead><tr><th class="slot">Slot</th><th class="gc c-tav">Tav (Bard)</th><th class="gc c-karlach">Karlach</th><th class="gc c-astarion">Astarion</th><th class="gc c-gale">Gale</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" class="slot">Weapon</th><td class="gc c-tav" data-id="gear-a3-mid-tav-weapon">Phalar Aluve</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-weapon">Halberd of Vigilance</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-weapon">Rhapsody</td><td class="gc c-gale" data-id="gear-a3-mid-gale-weapon">Incandescent Staff</td></tr>
+            <tr><th scope="row" class="slot">Off-hand / ranged</th><td class="gc c-tav" data-id="gear-a3-mid-tav-off-hand-ranged">Hand crossbow +2</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-off-hand-ranged">The Dead Shot (longbow)</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-off-hand-ranged">Titanstring Bow</td><td class="gc c-gale" data-id="gear-a3-mid-gale-off-hand-ranged">Ketheric's Shield</td></tr>
+            <tr><th scope="row" class="slot">Armour</th><td class="gc c-tav" data-id="gear-a3-mid-tav-armour">Adamantine Splint Armour</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-armour">Adamantine Scale Mail</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-armour">Bhaalist Armour</td><td class="gc c-gale" data-id="gear-a3-mid-gale-armour">Robe</td></tr>
+            <tr><th scope="row" class="slot">Head</th><td class="gc c-tav" data-id="gear-a3-mid-tav-head">Helmet of Arcane Acuity</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-head">Horns of the Berserker</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-head">Marksmanship Hat</td><td class="gc c-gale" data-id="gear-a3-mid-gale-head">Hood of the Weave</td></tr>
+            <tr><th scope="row" class="slot">Cloak</th><td class="gc c-tav" data-id="gear-a3-mid-tav-cloak">Cloak of Protection</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-cloak">Fleshmelter Cloak</td><td class="gc c-astarion empty">—</td><td class="gc c-gale" data-id="gear-a3-mid-gale-cloak">Cloak of the Weave</td></tr>
+            <tr><th scope="row" class="slot">Gloves</th><td class="gc c-tav" data-id="gear-a3-mid-tav-gloves">Gloves of Dexterity</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-gloves">Flawed Helldusk Gloves</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-gloves">Legacy of the Masters</td><td class="gc c-gale" data-id="gear-a3-mid-gale-gloves">Daredevil Gloves</td></tr>
+            <tr><th scope="row" class="slot">Boots</th><td class="gc c-tav" data-id="gear-a3-mid-tav-boots">Evasive Shoes</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-boots">Boots of Genial Striding</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-boots">Disintegrating Night Walkers</td><td class="gc c-gale" data-id="gear-a3-mid-gale-boots">Boots of Speed</td></tr>
+            <tr><th scope="row" class="slot">Amulet</th><td class="gc c-tav" data-id="gear-a3-mid-tav-amulet">Surgeon's Subjugation Amulet</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-amulet">Moondrop Pendant</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-amulet">Broodmother's Revenge</td><td class="gc c-gale" data-id="gear-a3-mid-gale-amulet">Necklace of Elemental Augmentation</td></tr>
+            <tr><th scope="row" class="slot">Ring 1</th><td class="gc c-tav" data-id="gear-a3-mid-tav-ring-1">Band of the Mystic Scoundrel</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-ring-1">Ring of Protection</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-ring-1">Strange Conduit Ring</td><td class="gc c-gale" data-id="gear-a3-mid-gale-ring-1">Mage's Friend</td></tr>
+            <tr><th scope="row" class="slot">Ring 2</th><td class="gc c-tav" data-id="gear-a3-mid-tav-ring-2">Killer's Sweetheart</td><td class="gc c-karlach" data-id="gear-a3-mid-karlach-ring-2">Bracing Band</td><td class="gc c-astarion" data-id="gear-a3-mid-astarion-ring-2">Shadow-Cloaked Ring</td><td class="gc c-gale" data-id="gear-a3-mid-gale-ring-2">Sunwalker's Gift</td></tr>
+          </tbody>
+      </table></div>
+      <p class="where"><strong>Where to get it:</strong> Bhaalist Armour: Murder Tribunal vendor. Legacy of the Masters: Dammon. Horns of the Berserker: Entharl Danthelon. Hood of the Weave: Mystic Carrion. Cloak of the Weave: Helsik (Devil's Fee). The Dead Shot: Fytz the Firecracker.</p>
+      <p class="small"><a href="#a3-lowercity">&larr; Back to the route at this point</a></p>
+    </div>
+  </section>
+  <section class="cl-section" id="gear-a3-end" data-section="gear-a3-end">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#gear-a3-end-body" aria-expanded="true" aria-controls="gear-a3-end-body" aria-label="Show or hide Act III — end of act (before Orin &amp; the finale, lvl 12)"></button>
+      <h3><a class="anchor" href="#gear-a3-end" title="Link to this section">Act III — end of act (before Orin &amp; the finale, lvl 12)</a> <span class="total" data-total="gear-a3-end"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="gear-a3-end-body">
+      <div class="table-responsive"><table class="table table-sm gear-table">
+          <thead><tr><th class="slot">Slot</th><th class="gc c-tav">Tav (Bard)</th><th class="gc c-karlach">Karlach</th><th class="gc c-astarion">Astarion</th><th class="gc c-gale">Gale</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" class="slot">Weapon</th><td class="gc c-tav" data-id="gear-a3-end-tav-weapon">Larethian's Wrath or Duellist's Prerogative</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-weapon">Balduran's Giantslayer* (else Halberd of Vigilance)</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-weapon">Rhapsody</td><td class="gc c-gale" data-id="gear-a3-end-gale-weapon">Staff of Spellpower*</td></tr>
+            <tr><th scope="row" class="slot">Off-hand / ranged</th><td class="gc c-tav" data-id="gear-a3-end-tav-off-hand-ranged">Hand crossbow +2</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-off-hand-ranged">Nyrulna (thrown)</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-off-hand-ranged">Titanstring Bow</td><td class="gc c-gale" data-id="gear-a3-end-gale-off-hand-ranged">Ketheric's Shield</td></tr>
+            <tr><th scope="row" class="slot">Armour</th><td class="gc c-tav" data-id="gear-a3-end-tav-armour">Adamantine Splint Armour</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-armour">Adamantine Scale Mail</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-armour">Bhaalist Armour</td><td class="gc c-gale" data-id="gear-a3-end-gale-armour">Robe of the Weave</td></tr>
+            <tr><th scope="row" class="slot">Head</th><td class="gc c-tav" data-id="gear-a3-end-tav-head">Helmet of Arcane Acuity</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-head">Horns of the Berserker</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-head">Helm of Balduran* or Mask of Soul Perception</td><td class="gc c-gale" data-id="gear-a3-end-gale-head">Hood of the Weave</td></tr>
+            <tr><th scope="row" class="slot">Cloak</th><td class="gc c-tav" data-id="gear-a3-end-tav-cloak">Cloak of Protection</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-cloak">Fleshmelter Cloak</td><td class="gc c-astarion empty">—</td><td class="gc c-gale" data-id="gear-a3-end-gale-cloak">Cloak of the Weave</td></tr>
+            <tr><th scope="row" class="slot">Gloves</th><td class="gc c-tav" data-id="gear-a3-end-tav-gloves">Gloves of Dexterity</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-gloves">Gauntlets of Hill Giant Strength*</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-gloves">Legacy of the Masters</td><td class="gc c-gale" data-id="gear-a3-end-gale-gloves">Daredevil Gloves</td></tr>
+            <tr><th scope="row" class="slot">Boots</th><td class="gc c-tav" data-id="gear-a3-end-tav-boots">Evasive Shoes</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-boots">Helldusk Boots</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-boots">Disintegrating Night Walkers</td><td class="gc c-gale" data-id="gear-a3-end-gale-boots">Boots of Speed</td></tr>
+            <tr><th scope="row" class="slot">Amulet</th><td class="gc c-tav" data-id="gear-a3-end-tav-amulet">Surgeon's Subjugation Amulet</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-amulet">Moondrop Pendant</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-amulet">Broodmother's Revenge</td><td class="gc c-gale" data-id="gear-a3-end-gale-amulet">Necklace of Elemental Augmentation</td></tr>
+            <tr><th scope="row" class="slot">Ring 1</th><td class="gc c-tav" data-id="gear-a3-end-tav-ring-1">Band of the Mystic Scoundrel</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-ring-1">Ring of Protection</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-ring-1">Strange Conduit Ring</td><td class="gc c-gale" data-id="gear-a3-end-gale-ring-1">Mage's Friend</td></tr>
+            <tr><th scope="row" class="slot">Ring 2</th><td class="gc c-tav" data-id="gear-a3-end-tav-ring-2">Killer's Sweetheart</td><td class="gc c-karlach" data-id="gear-a3-end-karlach-ring-2">Bracing Band</td><td class="gc c-astarion" data-id="gear-a3-end-astarion-ring-2">Shadow-Cloaked Ring</td><td class="gc c-gale" data-id="gear-a3-end-gale-ring-2">Sunwalker's Gift</td></tr>
+          </tbody>
+      </table></div>
+      <p class="where"><strong>Where to get it:</strong> * = optional dungeon. Staff of Spellpower + Gauntlets of Hill Giant Strength: House of Hope. Balduran's Giantslayer + Helm of Balduran: Wyrmway (Ansur). Robe of the Weave: Ramazith's Tower. Helldusk Boots: Gortash's stash. Nyrulna: Akabi's wheel. If you skip the optional dungeons, keep the mid-act item in that slot.</p>
+      <p class="small"><a href="#a3-encounters">&larr; Back to the route at this point</a></p>
+    </div>
+  </section>
+</div>
+
+<div class="tab-pane" id="tabTips" role="tabpanel" data-section="tabTips">
+  <h2 class="tab-title">General Tips <span class="total" data-total="tabTips"></span></h2>
+  <nav class="toc-box" aria-label="Tips contents"><ul class="toc toc-inline"><li><a href="#tips-dying">Why you keep dying</a></li><li><a href="#tips-honour">Honour Mode changes</a></li><li><a href="#tips-combat">Combat fundamentals</a></li><li><a href="#tips-gold">Gold, traders &amp; revives</a></li><li><a href="#tips-inspiration">Save Inspiration for…</a> <span class="total" data-total="tips-inspiration"></span></li><li><a href="#tips-legendary">Legendary actions</a></li></ul></nav>
+  <section class="cl-section" id="tips-dying">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#tips-dying-body" aria-expanded="true" aria-controls="tips-dying-body" aria-label="Show or hide Why you keep dying at levels 1–2"></button>
+      <h3><a class="anchor" href="#tips-dying" title="Link to this section">Why you keep dying at levels 1–2</a></h3>
+    </div>
+    <div class="section-body collapse show" id="tips-dying-body">
+      <p>Read this before you restart. Most early Honour Mode deaths come from a handful of habits, not from the build.</p>
+      <div class="table-responsive"><table class="table table-sm ">
+        <thead><tr><th>Problem</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Fights start with your whole party standing in the open.</td><td>Enter turn-based mode (F key / toggle) before anyone is spotted. Move each character into position one at a time, then open with Astarion from stealth.</td></tr>
+          <tr><td>Fighting 'fair' at level 1–2.</td><td>Most early fights are optional. Skip, talk your way out, or come back a level later. XP from quests and dialogue is just as good.</td></tr>
+          <tr><td>Standing on flat ground.</td><td>High ground gives +2 to hit and makes you harder to hit. Ranged characters belong on ledges.</td></tr>
+          <tr><td>Saving consumables.</td><td>Throw everything: smokepowder bombs, grease + fire, alchemist's fire, scrolls. Potions are a bonus action — use them.</td></tr>
+          <tr><td>Waiting too long to run.</td><td>If two characters are down, flee with whoever can. One survivor keeps the run alive; Withers revives the rest for 200g.</td></tr>
+          <tr><td>Not resting.</td><td>Long rest whenever spell slots are low. Camp supplies are cheap; a party wipe is not.</td></tr>
+          <tr><td>Healing in combat with full actions.</td><td>Use Healing Word (bonus action) to pick up a downed ally, then keep attacking. Don't spend a full turn topping off HP.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+  <section class="cl-section" id="tips-honour">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#tips-honour-body" aria-expanded="true" aria-controls="tips-honour-body" aria-label="Show or hide What Honour Mode changes"></button>
+      <h3><a class="anchor" href="#tips-honour" title="Link to this section">What Honour Mode changes</a></h3>
+    </div>
+    <div class="section-body collapse show" id="tips-honour-body">
+      <div class="table-responsive"><table class="table table-sm ">
+        <thead><tr><th>Rule</th><th>What it means for you</th></tr></thead>
+        <tbody>
+          <tr><td>One save file; full party death ends the run.</td><td>Back up the save folder between sessions. Never let all four fall — flee instead.</td></tr>
+          <tr><td>Bosses get Legendary Actions.</td><td>Inspect every boss (right-click → Examine) before the fight. See the <a href="#tips-legendary">Legendary Actions</a> table.</td></tr>
+          <tr><td>Long rests cost 80 camp supplies (vs 40).</td><td>Pick up food everywhere; sell junk.</td></tr>
+          <tr><td>Extra actions from Haste or Elixir of Bloodlust only allow ONE weapon attack.</td><td>Use the extra action for a potion, a throw, a Dash or a cantrip rather than expecting Extra Attack.</td></tr>
+          <tr><td>Perilous Stakes (illithid power) only affects allies.</td><td>Skip it.</td></tr>
+          <tr><td>Trader prices are higher.</td><td>Max approval with at least one trader per act — Dammon appears in all three.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+  <section class="cl-section" id="tips-combat">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#tips-combat-body" aria-expanded="true" aria-controls="tips-combat-body" aria-label="Show or hide Combat fundamentals"></button>
+      <h3><a class="anchor" href="#tips-combat" title="Link to this section">Combat fundamentals</a></h3>
+    </div>
+    <div class="section-body collapse show" id="tips-combat-body">
+      <div class="table-responsive"><table class="table table-sm ">
+        <thead><tr><th>Tip</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Surprise is everything.</td><td>Attacking from stealth before combat starts surprises enemies — they lose their first turn. You can open dialogue or combat with one character and leave the others frozen out of combat to sneak into position.</td></tr>
+          <tr><td>Turn-based mode outside combat.</td><td>It freezes patrols so you can position, throw a potion or set up the Owlbear drop.</td></tr>
+          <tr><td>Shove and terrain.</td><td>Shoving an enemy off a ledge is often an instant kill. Grease + fire, water + lightning, and explosive barrels are free damage.</td></tr>
+          <tr><td>Scratch and Shovel.</td><td>Scratch (the dog) is a free body that threatens enemies. Shovel's quasit can go invisible indefinitely — useful for triggering surprise.</td></tr>
+          <tr><td>Cull the Weak.</td><td>Its damage scales with how many illithid powers you own. Stack powers on one character. The Resonance Stone (Act II) makes it brutal — but it also makes your party vulnerable to psychic damage.</td></tr>
+          <tr><td>Longstrider every rest.</td><td>A bench companion can cast it on the whole party after each long rest — more movement makes fleeing easy.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+  <section class="cl-section" id="tips-gold">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#tips-gold-body" aria-expanded="true" aria-controls="tips-gold-body" aria-label="Show or hide Gold, traders and revives"></button>
+      <h3><a class="anchor" href="#tips-gold" title="Link to this section">Gold, traders and revives</a></h3>
+    </div>
+    <div class="section-body collapse show" id="tips-gold-body">
+      <div class="table-responsive"><table class="table table-sm ">
+        <thead><tr><th>Tip</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Withers revives for 200g.</td><td>Out of combat, use Withers instead of Revivify scrolls. You can pickpocket the gold back from him without penalty.</td></tr>
+          <tr><td>Cheap max trader approval.</td><td>Approval cost scales with level. Respec Tav to level 1 at Withers, gift 400g to a trader, then respec back — use <a href="#build-tav">Tav's level-up checklist</a> to rebuild.</td></tr>
+          <tr><td>Traders restock on level-up.</td><td>Every level-up refreshes stock — buy limited items like Elixirs of Hill Giant Strength again.</td></tr>
+          <tr><td>Traders drop their valuables.</td><td>If you plan to kill a trader, sell them your most expensive item first and loot it back.</td></tr>
+          <tr><td>Camp storage.</td><td>Send heavy loot, bodies and smokepowder barrels to camp. Sell in bulk.</td></tr>
+          <tr><td>Hireling inspiration trick.</td><td>Hire mercenaries with the right background at Withers to earn several Inspiration points from one event; dismiss them after.</td></tr>
+          <tr><td>Never touch the Oathbreaker Knight.</td><td>No attacks, no pickpocketing. He fixes broken oaths for gold — don't break your oath casually.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+  <section class="cl-section" id="tips-inspiration" data-section="tips-inspiration">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#tips-inspiration-body" aria-expanded="true" aria-controls="tips-inspiration-body" aria-label="Show or hide Save Inspiration for these rolls"></button>
+      <h3><a class="anchor" href="#tips-inspiration" title="Link to this section">Save Inspiration for these rolls</a> <span class="total" data-total="tips-inspiration"></span></h3>
+    </div>
+    <div class="section-body collapse show" id="tips-inspiration-body">
+      <p>Tick each one off once you have spent Inspiration on it.</p>
+      <ol class="checklist">
+        <li data-id="insp-1"><span class="act-tag">Act I</span> <span class="step-text">Persuade the tieflings to release Lae'zel (killing them breaks your oath)</span> <a class="small" href="#a1-landing">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-2"><span class="act-tag">Act I</span> <span class="step-text">Intimidate Auntie Ethel at low HP for the permanent +1 stat (hair) buff</span> <a class="small" href="#enc-ethel">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-3"><span class="act-tag">Act I</span> <span class="step-text">Decapitate True Soul Nere</span> <a class="small" href="#a1-grymforge">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-4"><span class="act-tag">Act I</span> <span class="step-text">Zaithisk chair checks in the Crèche (illithid powers as a bonus action)</span> <a class="small" href="#a1-creche">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-5"><span class="act-tag">Act II</span> <span class="step-text">Every Thorm boss dialogue skip (Thisobald, Malus, Gerringothe)</span> <a class="small" href="#a2-thorm">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-6"><span class="act-tag">Act II</span> <span class="step-text">Talk Commander Yurgir into falling on his sword</span> <a class="small" href="#a2-gauntlet">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-7"><span class="act-tag">Act II</span> <span class="step-text">Ketheric phase-skip check (only if you passed the tower check)</span> <a class="small" href="#a2-shadowfell">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-8"><span class="act-tag">Act III</span> <span class="step-text">Convince the Emperor to help Minsc</span> <a class="small" href="#a3-allies">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-9"><span class="act-tag">Act III</span> <span class="step-text">Save the victim from Orin</span> <a class="small" href="#a3-orin">route&nbsp;&rarr;</a></li>
+        <li data-id="insp-10"><span class="act-tag">Act III</span> <span class="step-text">Persuade Kith'rak Voss not to fight in the finale</span> <a class="small" href="#a3-finale">route&nbsp;&rarr;</a></li>
+      </ol>
+    </div>
+  </section>
+  <section class="cl-section" id="tips-legendary">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#tips-legendary-body" aria-expanded="true" aria-controls="tips-legendary-body" aria-label="Show or hide Legendary actions you&#x27;ll meet"></button>
+      <h3><a class="anchor" href="#tips-legendary" title="Link to this section">Legendary actions you'll meet</a></h3>
+    </div>
+    <div class="section-body collapse show" id="tips-legendary-body">
+      <div class="table-responsive"><table class="table table-sm ">
+        <thead><tr><th>Boss</th><th>Legendary action</th><th>Counter</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#enc-owlbear">Owlbear</a> (Act I)</td><td>Call Consort — summons her mate when she's attacked.</td><td>Burst her down from stealth in round one; fight from the cave-mouth ledge; bring smokepowder. Be ready to flee.</td></tr>
+          <tr><td><a href="#enc-matriarch">Phase Spider Matriarch</a> (Act I)</td><td>Gossamer Tomb — triggers when her offspring are attacked.</td><td>Break as many eggs as possible from stealth before starting the fight.</td></tr>
+          <tr><td><a href="#enc-leaders">Dror Ragzlin</a> (Act I)</td><td>Devoted Galvanism — nearby Absolutists get Action Surge when an ally is targeted.</td><td>Kill or lure away his followers first; fight him isolated.</td></tr>
+          <tr><td><a href="#enc-karniss">Kar'niss</a> (Act II)</td><td>Fanatic Retaliation — when a Spindleweb Fanatic dies he silences the attacker and can deal 6–60 psychic damage.</td><td>Use the Spider Lyre to fight him alone; kill fanatics from range with non-casters.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small text-body-secondary">Examine every boss before engaging — the tooltip lists its Honour Mode actions and resistances.</p>
+    </div>
+  </section>
+</div>
+
+<div class="tab-pane" id="tabHelp" role="tabpanel" data-section="tabHelp">
+  <h2 class="tab-title">Help</h2>
+  <nav class="toc-box" aria-label="Help contents"><ul class="toc toc-inline"><li><a href="#help-using">Using this cheat sheet</a></li><li><a href="#flags">Flags</a></li><li><a href="#help-progress">Backup &amp; restore</a></li><li><a href="#sources">Sources &amp; credits</a></li></ul></nav>
+  <section class="cl-section" id="help-using">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#help-using-body" aria-expanded="true" aria-controls="help-using-body" aria-label="Show or hide Using this cheat sheet"></button>
+      <h3><a class="anchor" href="#help-using" title="Link to this section">Using this cheat sheet</a></h3>
+    </div>
+    <div class="section-body collapse show" id="help-using-body">
+      <ul class="plain">
+        <li><strong>Tick steps as you go.</strong> Progress is saved in this browser's local storage — nothing is sent anywhere. Clearing site data for this page erases it, so export a backup now and then.</li>
+        <li><strong>Resume</strong> (top bar) jumps to the first unticked playthrough step.</li>
+        <li><strong>Jump to</strong> lists every section on every tab. Every heading, step, gear table and encounter card also has its own link — click a heading to put its address in the URL bar and share or bookmark it.</li>
+        <li><strong>Hide completed</strong> hides ticked steps; <strong>Collapse all</strong> / <strong>Expand all</strong> fold every section. Sections you fold stay folded next time.</li>
+        <li><strong>Profiles</strong> keep separate progress for separate runs (one per save). Use Add, Rename or Delete in the profile menu.</li>
+        <li><strong>Respecs:</strong> each build has a <em>Clear level-ups</em> button, so after a respec you can tick the levels again as you rebuild.</li>
+        <li>The page prints cleanly (all tabs, no buttons) if you want paper.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="cl-section" id="flags">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#flags-body" aria-expanded="true" aria-controls="flags-body" aria-label="Show or hide Flags"></button>
+      <h3><a class="anchor" href="#flags" title="Link to this section">Flags</a></h3>
+    </div>
+    <div class="section-body collapse show" id="flags-body">
+      <p>Each act is split into areas. Each area is a numbered checklist; the big fights get their own encounter card; and every act has gear tables showing what each of the four party members should be wearing at the midpoint and at the end.</p>
+      <div class="table-responsive"><table class="table table-sm">
+          <thead><tr><th>Flag</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><span class="flag flag-rk">Run killer</span></td><td>A mistake here has ended real runs. Read the step twice.</td></tr>
+            <tr><td><span class="flag flag-prk">Potential run killer</span></td><td>Can end the run if it goes badly; have an escape ready.</td></tr>
+            <tr><td><span class="flag flag-insp">Inspiration</span></td><td>Spend saved Inspiration on this roll.</td></tr>
+            <tr><td><span class="flag flag-oath">Oath</span></td><td>Affects Tav's Paladin oath (break or restore).</td></tr>
+            <tr><td><span class="flag flag-swap">Swap</span></td><td>Swap a companion in or out for this step.</td></tr>
+            <tr><td><span class="flag flag-boss">Boss</span></td><td>Boss with an Honour Mode Legendary Action.</td></tr>
+            <tr><td><span class="flag flag-cheese">Optional cheese</span></td><td>Exploit/trick — use it if you're comfortable with it.</td></tr>
+          </tbody>
+      </table></div>
+    </div>
+  </section>
+  <section class="cl-section" id="help-progress">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#help-progress-body" aria-expanded="true" aria-controls="help-progress-body" aria-label="Show or hide Backup, restore and reset"></button>
+      <h3><a class="anchor" href="#help-progress" title="Link to this section">Backup, restore and reset</a></h3>
+    </div>
+    <div class="section-body collapse show" id="help-progress-body">
+      <p>Your progress lives only in this browser. Export it to move it to another device or keep a backup.</p>
+      <div class="d-flex flex-wrap gap-2">
+        <button type="button" class="btn btn-sm btn-outline-primary" id="exportProfile">Export this profile</button>
+        <button type="button" class="btn btn-sm btn-outline-primary" id="importProfileBtn">Import a profile…</button>
+        <input type="file" id="importProfileFile" accept="application/json,.json" class="visually-hidden" tabindex="-1">
+        <button type="button" class="btn btn-sm btn-outline-danger" id="resetProfile">Reset this profile's progress</button>
+      </div>
+      <p class="small text-body-secondary mt-2" id="storageNote"></p>
+    </div>
+  </section>
+  <section class="cl-section" id="sources">
+    <div class="section-head">
+      <button class="btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#sources-body" aria-expanded="true" aria-controls="sources-body" aria-label="Show or hide Sources &amp; credits"></button>
+      <h3><a class="anchor" href="#sources" title="Link to this section">Sources &amp; credits</a></h3>
+    </div>
+    <div class="section-body collapse show" id="sources-body">
+      <p>The route is a reorganised, re-worded version of the Steam guide below, adapted to this party. Builds and gear come from the build guides listed.</p>
+      <ul class="sources">
+        <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3557359669" rel="noopener">Beginner Honour Mode Route, Build and Tips — The Cuck Chair &amp; HammerEZ (Steam guide)</a></li>
+        <li><a href="https://www.reddit.com/r/BaldursGate3/comments/18of2fz/bg3_honor_mode_indepth_guide_for_act_i/" rel="noopener">BG3 Honor Mode In-Depth Guide for Act I — u/Sherlaine- (Reddit; only its opening notes were reachable)</a></li>
+        <li><a href="https://eip.gg/bg3/builds/astarion-gloomstalker-assassin-party-code-v1/" rel="noopener">Astarion – Gloomstalker Assassin (Party Code V1) — EIP Gaming</a></li>
+        <li><a href="https://eip.gg/bg3/builds/smite-swords-bard/" rel="noopener">Smite Swords Bard — EIP Gaming</a></li>
+        <li><a href="https://eip.gg/bg3/builds/companion-karlach/" rel="noopener">Companion Karlach — EIP Gaming</a></li>
+        <li><a href="https://eip.gg/bg3/builds/companion-gale/" rel="noopener">Companion Gale — EIP Gaming</a></li>
+        <li><a href="https://deltiasgaming.com/?p=60062" rel="noopener">Act 1 Boss Fights on Honour Mode — Deltia's Gaming</a></li>
+        <li><a href="https://deltiasgaming.com/baldurs-gate-3-best-honour-mode-party-setup/" rel="noopener">Best Honour Mode Build / Party Setup — Deltia's Gaming</a></li>
+        <li><a href="https://progameguides.com/baldurs-gate/all-honour-mode-legendary-actions-in-baldurs-gate-3/" rel="noopener">All Honour Mode Legendary Actions — Pro Game Guides</a></li>
+        <li><a href="https://www.eneba.com/hub/?p=42044" rel="noopener">Best BG3 builds 2026 (Bear Heart, Gloomstalker Assassin notes) — Eneba Hub</a></li>
+      </ul>
+      <div class="callout callout-purple">
+        <strong>A note on the Reddit guide</strong>
+        <p>The Reddit Act I guide couldn't be opened when this was compiled (Reddit blocks automated access), so only its opening notes — the Honour Mode rule changes, the case for Guidance and for maxing Dammon's approval — are folded in. The encounter cards cover the Act I fights it's known for.</p>
+      </div>
+      <p class="small">Site layout inspired by Stephen McNabb's <a href="https://smcnabb.github.io/dark-souls-2-cheat-sheet/">Dark Souls 2 Cheat Sheet</a> and xenevel's <a href="https://github.com/xenevel/dark-souls-2-sotfs-cheat-sheet">Dark Souls 2: SotFS Cheat Sheet</a>. Baldur's Gate 3 is a trademark of Larian Studios; this is an unofficial fan guide. Compiled October 2026 for Patch 8.</p>
+    </div>
+  </section>
+</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container small">Unofficial fan guide. Baldur's Gate 3 © Larian Studios. Route adapted from the guides in <a href="#sources">Sources &amp; credits</a>.</div>
+</footer>
+
+<button type="button" class="btn back-to-top" id="backToTop" aria-label="Back to top">&uarr; Top</button>
+
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" id="profileForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileModalTitle">Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label" for="profileModalName">Profile name</label>
+        <input type="text" class="form-control" id="profileModalName" maxlength="60" autocomplete="off" required>
+        <div class="form-text">One profile per run keeps each save's progress separate.</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger me-auto" id="profileModalDelete">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="profileModalSave">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
