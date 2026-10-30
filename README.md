@@ -1,3 +1,12 @@
+Vibe coded website to track a BG3 Honor Mode campaign, patterned after [Stephen McNabb](https://github.com/smcnabb)'s [Dark Souls 2 Cheat Sheet](https://smcnabb.github.io/dark-souls-2-cheat-sheet/).
+
+I asked Claude to make this guide to help me beat Honor Mode, so I make no promises about the accuracy of its contents.
+Feel free to submit a PR to expand upon it!
+
+-- @chrsmith
+
+---
+
 # Baldur's Gate 3: Honour Mode Cheat Sheet — The Bard's Field Manual
 
 An interactive checklist for a Baldur's Gate 3 Honour Mode run with a Swords Bard / Paladin-led party (Tav, Karlach, Astarion, Gale). It walks area by area from the Nautiloid to the Netherbrain, with encounter cards for the big fights, level-up plans for all four characters and gear tables for each act.
