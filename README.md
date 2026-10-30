@@ -11,7 +11,7 @@ Feel free to submit a PR to expand upon it!
 
 An interactive checklist for a Baldur's Gate 3 Honour Mode run with a Swords Bard / Paladin-led party (Tav, Karlach, Astarion, Gale). It walks area by area from the Nautiloid to the Netherbrain, with encounter cards for the big fights, level-up plans for all four characters and gear tables for each act.
 
-To view the cheat sheet, [click here](https://YOUR-USERNAME.github.io/bg3-honour-mode-cheat-sheet/) (update this link after you enable GitHub Pages).
+To view the cheat sheet, [click here](https://chrsmith.github.io/bg3-honour-mode-cheat-sheet/) (update this link after you enable GitHub Pages).
 
 ![Screenshot of the cheat sheet](images/screenshot.png)
 
@@ -27,11 +27,11 @@ To view the cheat sheet, [click here](https://YOUR-USERNAME.github.io/bg3-honour
 ## Publishing on GitHub Pages
 
 ```sh
-git remote add origin https://github.com/YOUR-USERNAME/bg3-honour-mode-cheat-sheet.git
+git remote add origin https://github.com/chrsmith/bg3-honour-mode-cheat-sheet.git
 git push -u origin main
 ```
 
-Then on GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, choose **main** and **/ (root)**, and save. The site appears at `https://YOUR-USERNAME.github.io/bg3-honour-mode-cheat-sheet/` after a minute or two. Update the link at the top of this README.
+Then on GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, choose **main** and **/ (root)**, and save. The site appears at `https://chrsmith.github.io/bg3-honour-mode-cheat-sheet/` after a minute or two. Update the link at the top of this README.
 
 ## Previewing locally
 
