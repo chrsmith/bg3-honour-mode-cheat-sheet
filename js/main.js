@@ -66,6 +66,117 @@
 
   function itemFor(input) { return document.querySelector('[data-id="' + input.getAttribute('data-track') + '"]'); }
 
+  // ------------------------------------------------------------ gear wiki links
+  // Cells with class="gear-link" hold gear-table text that may name one or more
+  // specific items (e.g. "Ring of Protection", or compound text like "Everburn
+  // Blade or Sussur greatsword"). GEAR_WIKI maps the exact substring as it
+  // appears on this page to the bg3.wiki slug for that item, so we can wrap
+  // just the recognised item name(s) in a link and leave the rest of the
+  // cell's text (alternatives, footnotes, parenthetical notes) alone.
+  var GEAR_WIKI = {
+    'Everburn Blade': 'Everburn_Blade',
+    'Amulet of Misty Step': 'Amulet_of_Misty_Step',
+    'Ring of Protection': 'Ring_of_Protection',
+    'Phalar Aluve': 'Phalar_Aluve',
+    'Sussur greatsword': 'Sussur_Greatsword',
+    'Knife of the Undermountain King': 'Knife_of_the_Undermountain_King',
+    "Melf's First Staff": "Melf's_First_Staff",
+    'Staff of Arcane Blessing': 'Staff_of_Arcane_Blessing',
+    'Titanstring Bow': 'Titanstring_Bow',
+    'Club of Hill Giant Strength': 'Club_of_Hill_Giant_Strength',
+    'Adamantine Splint Armour': 'Adamantine_Splint_Armour',
+    'Adamantine Scale Mail': 'Adamantine_Scale_Mail',
+    'The Graceful Cloth': 'The_Graceful_Cloth',
+    'Haste Helm': 'Haste_Helm',
+    'Gloves of the Growling Underdog': 'Gloves_of_the_Growling_Underdog',
+    'Gloves of Archery': 'Gloves_of_Archery',
+    'Daredevil Gloves': 'Daredevil_Gloves',
+    'Linebreaker Boots': 'Linebreaker_Boots',
+    'Boots of Genial Striding': 'Boots_of_Genial_Striding',
+    'Disintegrating Night Walkers': 'Disintegrating_Night_Walkers',
+    'Boots of Speed': 'Boots_of_Speed',
+    "Broodmother's Revenge": "Broodmother's_Revenge",
+    'Necklace of Elemental Augmentation': 'Necklace_of_Elemental_Augmentation',
+    "Crusher's Ring": "Crusher's_Ring",
+    'Strange Conduit Ring': 'Strange_Conduit_Ring',
+    "Mage's Friend": "Mage's_Friend",
+    'Caustic Band': 'Caustic_Band',
+    'Bracing Band': 'Bracing_Band',
+    'Fetish of Callarduran Smoothhands': 'Fetish_of_Callarduran_Smoothhands',
+    "Sunwalker's Gift": "Sunwalker's_Gift",
+    'Incandescent Staff': 'Incandescent_Staff',
+    'Darkfire Shortbow': 'Darkfire_Shortbow',
+    'Flawed Helldusk Helmet': 'Flawed_Helldusk_Helmet',
+    'Hat of Fire Acuity': 'Hat_of_Fire_Acuity',
+    'Cloak of Protection': 'Cloak_of_Protection',
+    'Fleshmelter Cloak': 'Fleshmelter_Cloak',
+    'Gloves of Dexterity': 'Gloves_of_Dexterity',
+    'Flawed Helldusk Gloves': 'Flawed_Helldusk_Gloves',
+    'Risky Ring': 'Risky_Ring',
+    'Halberd of Vigilance': 'Halberd_of_Vigilance',
+    'Rhapsody': 'Rhapsody',
+    "Ketheric's Shield": "Ketheric's_Shield",
+    // Plain "Dark Justiciar Half-Plate"/"Gauntlets" are disambiguation pages
+    // (two rarity variants each) — these are the pieces found in the
+    // Gauntlet of Shar, matching the "Where to get it" note below.
+    'Dark Justiciar Half-Plate': 'Dark_Justiciar_Half-Plate_(Rare)',
+    'Helmet of Arcane Acuity': 'Helmet_of_Arcane_Acuity',
+    'Marksmanship Hat': 'Marksmanship_Hat',
+    'Dark Justiciar Gauntlets': 'Dark_Justiciar_Gauntlets_(Uncommon)',
+    'Evasive Shoes': 'Evasive_Shoes',
+    "Surgeon's Subjugation Amulet": "Surgeon's_Subjugation_Amulet",
+    "Killer's Sweetheart": "Killer's_Sweetheart",
+    'Shadow-Cloaked Ring': 'Shadow-Cloaked_Ring',
+    'The Dead Shot': 'The_Dead_Shot',
+    'Bhaalist Armour': 'Bhaalist_Armour',
+    'Horns of the Berserker': 'Horns_of_the_Berserker',
+    'Hood of the Weave': 'Hood_of_the_Weave',
+    'Cloak of the Weave': 'Cloak_of_the_Weave',
+    'Legacy of the Masters': 'Legacy_of_the_Masters',
+    'Moondrop Pendant': 'Moondrop_Pendant',
+    'Band of the Mystic Scoundrel': 'Band_of_the_Mystic_Scoundrel',
+    "Larethian's Wrath": "Larethian's_Wrath",
+    "Duellist's Prerogative": "Duellist's_Prerogative",
+    "Balduran's Giantslayer": "Balduran's_Giantslayer",
+    'Staff of Spellpower': 'Staff_of_Spellpower',
+    'Nyrulna': 'Nyrulna',
+    'Helm of Balduran': 'Helm_of_Balduran',
+    'Mask of Soul Perception': 'Mask_of_Soul_Perception',
+    'Robe of the Weave': 'Robe_of_the_Weave',
+    'Gauntlets of Hill Giant Strength': 'Gauntlets_of_Hill_Giant_Strength',
+    'Helldusk Boots': 'Helldusk_Boots'
+  };
+
+  // Longest match first, so e.g. "Ring of Protection" is matched whole rather
+  // than any shorter name that happened to be a substring of it.
+  var GEAR_NAMES = Object.keys(GEAR_WIKI).sort(function (a, b) { return b.length - a.length; });
+
+  function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  var GEAR_PATTERN = new RegExp('(' + GEAR_NAMES.map(escapeRegExp).join('|') + ')', 'g');
+
+  // Must run after addCheckboxes(), which wraps each [data-id] cell's text in
+  // .item-content (inside a checkbox <label>). We rewrite that inner span,
+  // not the <td> itself — overwriting the <td> would destroy the checkbox
+  // addCheckboxes just built.
+  function initGearLinks() {
+    $$('.gear-link .item-content').forEach(function (span) {
+      var text = span.textContent;
+      if (!GEAR_PATTERN.test(text)) return;
+      GEAR_PATTERN.lastIndex = 0;
+      span.innerHTML = text.replace(GEAR_PATTERN, function (name) {
+        return '<a class="gear-wiki-link" href="https://bg3.wiki/wiki/' + GEAR_WIKI[name] +
+          '" target="_blank" rel="noopener">' + name + '</a>';
+      });
+      // Clicking the link shouldn't also toggle the checkbox — the link is a
+      // descendant of the <label for="...">, and a click on it would
+      // otherwise bubble up and fire the label's default action too.
+      $$('a.gear-wiki-link', span).forEach(function (a) {
+        a.addEventListener('click', function (e) { e.stopPropagation(); });
+      });
+    });
+  }
+
   // ------------------------------------------------------------ checkboxes
   // Turn every [data-id] element into a labelled checkbox, as the DS2 sheets do.
   function addCheckboxes() {
@@ -502,6 +613,7 @@
   // ------------------------------------------------------------ boot
   document.addEventListener('DOMContentLoaded', function () {
     addCheckboxes();
+    initGearLinks();
 
     document.addEventListener('change', function (e) {
       var input = e.target;
